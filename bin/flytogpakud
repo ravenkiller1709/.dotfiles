@@ -1,0 +1,7 @@
+#/bin/bash
+cd ~/Hentet 
+mv *.zip ~/Musik 
+cd ~/Musik 
+musicunzip
+mpc update 
+

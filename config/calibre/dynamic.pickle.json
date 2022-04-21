@@ -1,0 +1,16 @@
+{
+  "add books dialog dir": "/home/kim/Dokumenter/Ebooks_Collection/John Grisham/A Painted House (5551)",
+  "database location dialog": "/home/kim/Dokumenter",
+  "sort_history": [
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "timestamp",
+      false
+    ]
+  ],
+  "welcome_wizard_device": "kindle_pw",
+  "welcome_wizard_was_run": true
+}

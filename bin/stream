@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# This script will capture your microphone & desktop, then stream them both to YouTube
+
+VBR="4500k"
+FPS="30"
+QUAL="veryfast"
+YOUTUBE_URL=rtmp://z.rtmp.youtube.com/live2"
+STREAM_KEY="..."
+
+ffplay -f v4l2 -input_format mjpeg -video_size 1920x1080 -i /dev/video1 &
+
+ffmpeg -y \
+    -f x11grab -probesize 32M -thread_queue_size 128 \
+    -s 1920x1080 -r $FPS -i $DISPLAY \
+    -f_sndio -thread_queue_size 128 -i snd/o \
+    -codec:v libx264 -pix_fmt yuv420p -g $(($FPS * 2)) -b:v $VBR -preset $QUAL \
+    -codec:a aac -ac 2 -b:a 128k \
+    -vsync 1 -async 1 \
+    -f flv $YOUTUBE_URL/$STREAM_KEY

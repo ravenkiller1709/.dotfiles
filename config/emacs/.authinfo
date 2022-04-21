@@ -1,0 +1,2 @@
+machine smtp.gmail.com login mail4kruse@gmail.com password aFR8of61! port 465
+machine mail.kimkruse.xyz login kim password aFR8of55 port 587

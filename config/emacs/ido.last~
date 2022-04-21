@@ -1,0 +1,63 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/" . "kim/")
+ ("/home/kim/.config/emacs/" . "exwm/")
+ ("/home/kim/.config/" . "emacs/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/kim/.config/emacs/"
+ "/home/kim/.config/emacs/exwm/"
+ "/home/kim/Dokumenter/"
+ "/home/kim/Dokumenter/ebooks/"
+ "/home/kim/.dotfileslinux/"
+ "/home/kim/.ssh/"
+ "/home/kim/"
+ "/home/kim/.gnupg/"
+ "/home/kim/.config/alacritty/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+ "start-exwm.sh"
+ "test.org"
+ "Anonymous-Diary-of-an-Oxygen-Thief.pdf"
+ "test.md"
+ "id_rsa.pub"
+ ".authinfo.gpg"
+ ".mbsyncrc"
+ "gpg-agent.conf"
+ "desktop.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/kim/.config/emacs/" (25143 767 834234 794000) "ido.last" "ido.last~" "init.el" "init.el~" "transient/" "magithub/" "network-security.data" ".mbsyncrc" ".mbsyncrc~" "desktop.el" "desktop.el~" "history" ".last-package-update-day" "elpa/" "auto-save-list/" "exwm/" ".authinfo" "../" "./")
+
+ ("/home/kim/" (25143 529 774237 782000) ".ZipArchive/" ".gitconfig" ".dotfileslinux/" ".ssh/" ".lyrics/" ".authinfo.gpg" ".authinfo.gpg~" ".mbsyncrc" ".mbsyncrc~" ".pki/" ".Xresources" "Mail/" ".mozilla/" ".password-store/" ".gnupg/" ".cache/" ".local/" "Videoklip/" "Billeder/" "Musik/" "Dokumenter/" "Offentligt/" "Skabeloner/" "Hentet/" "Skrivebord/" ".bash_history" ".config/" ".bashrc" ".bash_profile" ".bash_logout" "../" "./")
+
+ ("/home/kim/Dokumenter/" (25143 278 847574 238000) "test.org" "test.md" "literature-epub/" "Ebooks_Collection/" "ebooks/" "../" "./")
+
+ ("/home/kim/Dokumenter/ebooks/" (25133 33433 567633 179000) "Welcome to The Universe - Neil deGrasse Tyson.epub" "Waking Gods Book 2 of the Them - Sylvain Neuvel.epub" "Under the Dome_ A Novel - Stephen King.epub" "Things_We_Know_by_Heart_-_Jessi_Kirby.epub" "They Both Die at the End - Adam Silvera.epub" "The_Rest_of_Us_Just_Live_Here_-_Patrick_Ness.epub" "The Sun Is Also a Star - Nicola Yoon.epub" "The Last Time We Say Goodbye - Cynthia Hand.epub" "The Geography of You and Me - Jennifer E. Smith.epub" "Sleeping Giants - Sylvain Neuvel.epub" "Rupi Kaur/" "Rothenberg, Jess/" "Rick Riordan/" "Ransom Riggs/" "Rainbow Rowell/" "README.md" "Patrick Ness - A Monster Calls (v5.0).epub" "Origin.epub" "Origin by Dan Brown.epub" "Norse Mythology - Neil Gaiman.epub" "Neil Gaiman/" "My Heart and Other Black Holes - Jasmine Warga.epub" "Love Letters to the Dead - Ava Dellaira.epub" "Lily+Rambrisc+-+The+Poems+of+Sylvia+Plath+1960-61.epub" "Levithan, David - Every Day.epub" "Laura_Marx_Fitzgerald_-_The_Gallery.epub" "Lang Leav/" "John Green/" "Jocelyn_Davies_-_The_Odds_of_Lightning.epub" "Jenny Han/" "Jennifer Niven/" "I-Wrote-This-For-You.epub" "I'll Give You the Sun - Jandy Nelson.epub" "I'll Be There_Chapter 1.pdf" "I Wrote This For You.epub" "Haruki Murakami/" "Girl_Against_the_Universe_-_Paula_Stokes.epub" "Gayle Forman - Where She Went(1).epub" "Gayle Forman - If I Stay.epub" "Fantastic Beasts and Where to F - J. K. Rowling.epub" "Everything, Everything - Nicola Yoon.epub" "Every Last Word - Tamara Ireland Stone.epub" "Counting by 7s by Holly Goldberg Sloan.epub" "Book_01___The_Bad_Beginning__Revised_.epub" "Beginning of Everything, The - Robyn Schneider.epub" "Astrophysics for People in a Hurry - Neil deGrasse Tyson.epub" "Aristotle and Dante Discover the Secrets of the Universe - Benjamin Alire Sáenz.epub" "Antoine_de_Saint_-_The_Little_Prince.epub" "Anonymous-Diary-of-an-Oxygen-Thief.pdf" "Amy Zhang/" "All_in_Pieces_-_Suzanne_Young.epub" "About Time Adam Frank.epub" "A_Series_of_Unfortunate_Events_1__The_Bad_Beginning.epub" "2004 - After Dark.epub" ".git/" "../" "./")
+
+ ("/home/kim/.gnupg/" (25138 48339 957764 658000) "pubring.kbx" "pubring.kbx~" "crls.d/" "gpg-agent.conf" "random_seed" "openpgp-revocs.d/" "trustdb.gpg" "private-keys-v1.d/" "../" "./")
+
+ ("/home/kim/.dotfileslinux/" (25134 56214 936063 204000) ".git/" "src/" "freebsdlinks" "fonts/" "dots/" "config/" "colorscript" "bin/" "base-uefi.sh" "base-mbr.sh" "README.md" ".xprofile" ".xmonad/" ".xmobarrc" ".scripts/" ".baggrunde/" ".Xresources" "../" "./")
+
+ ("/home/kim/.config/emacs/exwm/" (25134 22384 829148 224000) "start-exwm.sh" "start-exwm.sh~" "desktop.el" "../" "./")
+
+ ("/home/kim/.ssh/" (25134 56678 126041 517000) "known_hosts" "known_hosts.old" "id_rsa.pub" "id_rsa" "../" "./")
+
+ ("/home/kim/.config/" (25134 55911 936077 370000) "emacs/" "spotify/" "systemd/" "ncmpcpp/" "discord/" "epiphany/" "mimeapps.list" "BraveSoftware/" "mpd/" "fish/" "alacritty/" "gnome-session/" "dleyna-renderer-service.conf" "nautilus/" "gnome-boxes/" "gtk-3.0/" "goa-1.0/" "pulse/" "evolution/" "dconf/" "ibus/" "yay/" "user-dirs.dirs" "user-dirs.locale" "../" "./")
+
+ ("/home/" (25132 51861 330380 383000) "kim/" "../" "./")
+
+ ("/home/kim/.config/alacritty/" (25133 3191 533517 203000) "alacritty.yml" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

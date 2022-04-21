@@ -1,0 +1,1 @@
+sudo mount -t davfs https://192.168.0.34/remote.php/webdav/ /home/danekikr/NextCloud

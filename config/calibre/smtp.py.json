@@ -1,0 +1,12 @@
+{
+  "accounts": {},
+  "aliases": {},
+  "encryption": "TLS",
+  "from_": "kimkruse@hotmail.com",
+  "relay_host": "smtp.live.com",
+  "relay_password": "614652386f663536",
+  "relay_port": 587,
+  "relay_username": "kimkruse@hotmail.com",
+  "subjects": {},
+  "tags": {}
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo ipsec down kimvpn
+sleep 10
+sudo ipsec restart

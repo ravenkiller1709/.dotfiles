@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#### Unzip music into folders named after zip file and removing the zip file
+
+for i in *.zip
+
+      do unzip "$i" -d "${i%%.zip}"
+
+done
+
+mv *.zip ~/.ZipArchive

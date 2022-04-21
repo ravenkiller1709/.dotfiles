@@ -1,0 +1,6 @@
+#!/bin/sh
+while true
+do
+feh --bg-scale --randomize $HOME/Dokumenter/Billeder/4k
+sleep 300
+done

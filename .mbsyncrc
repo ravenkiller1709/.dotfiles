@@ -1,0 +1,79 @@
+IMAPStore kim@kimkruse.xyz-remote
+Host mail.kimkruse.xyz
+Port 993
+User kim
+PassCmd "emacsclient -e \"(efs/lookup-password :host \\\"mail.kimkruse.xyz\\\" :user \\\"kim\\\")\" | cut -d '\"' -f2"
+#PassCmd "pass kim@kimkruse.xyz"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore kim@kimkruse.xyz-local
+Subfolders Verbatim
+Path /home/kim/Mail/kimkruse/
+Inbox /home/kim/Mail/kimkruse/INBOX
+
+Channel kim@kimkruse.xyz
+Expunge Both
+Master :kim@kimkruse.xyz-remote:
+Slave :kim@kimkruse.xyz-local:
+Patterns * !"/kimkruse/Alle mails"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
+IMAPStore kimkruse@hotmail.com-remote
+Host imap-mail.outlook.com
+Port 993
+User kimkruse@hotmail.com
+PassCmd "emacsclient -e \"(efs/lookup-password :host \\\"imap-mail.outlook.com\\\" :user \\\"kimkruse@hotmail.com\\\")\" | cut -d '\"' -f2"
+#PassCmd "pass kimkruse@hotmail.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore kimkruse@hotmail.com-local
+Subfolders Verbatim
+Path /home/kim/Mail/Hotmail/
+Inbox /home/kim/Mail/Hotmail/INBOX
+
+Channel kimkruse@hotmail.com
+Expunge Both
+Master :kimkruse@hotmail.com-remote:
+Slave :kimkruse@hotmail.com-local:
+Patterns * !"Hotmail/Alle mails"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
+
+IMAPStore mail4kruse@gmail.com-remote
+Host imap.gmail.com
+Port 993
+User mail4kruse@gmail.com
+PassCmd "emacsclient -e \"(efs/lookup-password :host \\\"imap.gmail.com\\\" :user \\\"mail4kruse@gmail.com\\\")\" | cut -d '\"' -f2"
+#PassCmd "pass mail4kruse@gmail.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore mail4kruse@gmail.com-local
+Subfolders Verbatim
+Path /home/kim/Mail/Gmail/
+Inbox /home/kim/Mail/Gmail/INBOX
+
+Channel mail4kruse@gmail.com
+Expunge Both
+Master :mail4kruse@gmail.com-remote:
+Slave :mail4kruse@gmail.com-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+

@@ -1,0 +1,2 @@
+;;; Generated package description from faff-theme.el  -*- no-byte-compile: t -*-
+(define-package "faff-theme" "20220318.2213" "Light Emacs color theme on cornsilk3 background" 'nil :commit "c58c162a2d1284033497feff4bfa8c3210685d9d" :authors '(("James Ferguson <(concat \"wjcferguson\" at-sign \"gmail.com\")>")) :maintainer '("James Ferguson <(concat \"wjcferguson\" at-sign \"gmail.com\")>") :keywords '("color" "theme") :url "https://github.com/WJCFerguson/emacs-faff-theme")

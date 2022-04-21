@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /home/kim/Dokumenter/ProtonVPN &&
+sudo openvpn ch-de-01.protonvpn.com.udp.ovpn

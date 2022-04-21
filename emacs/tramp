@@ -1,0 +1,29 @@
+;; -*- emacs-lisp -*- <22/04/19 18:10:41 /home/kim/.config/emacs/tramp>
+;; Tramp connection history.  Don't change this file.
+;; Run `M-x tramp-cleanup-all-connections' instead.
+
+(((tramp-file-name "doas" "root" nil "bsddesk.home" nil nil nil)
+  ("uname" "OpenBSD 7.1")
+  ("locale" "LC_ALL=en_US.UTF-8")
+  ("test" "test")
+  ("remote-path"
+   ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/X11R6/bin" "/usr/local/bin" "/usr/local/sbin"))
+  ("pipe-buf" 512)
+  ("remote-shell" "/bin/sh")
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("id" "/usr/bin/id")
+  ("gid-string" "wheel")
+  ("file-exists" "test -e")
+  ("tmpdir" "/doas:root@bsddesk.home:/tmp")
+  ("uid-integer" 0)
+  ("gid-integer" 0)
+  ("readlink" nil)
+  ("case-insensitive" nil)
+  ("touch-t" t)
+  ("touch" "\\touch")
+  ("bzr" nil)
+  ("git" "\\git")
+  ("hg" nil)))
