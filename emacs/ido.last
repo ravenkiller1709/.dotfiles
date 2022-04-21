@@ -11,16 +11,16 @@
  ("/doas::/" . "etc/")
  ("/home/" . "kim/")
  ("/home/kim/.config/emacs/" . "exwm/")
- ("/home/kim/.config/" . "alacritty/")
+ ("/home/kim/.config/" . "emacs/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "/home/kim/.dotfiles/emacs/"
+ "/home/kim/.config/emacs/"
  "/home/kim/.config/alacritty/"
  "/home/kim/.config/emacs/exwm/"
- "/home/kim/.config/emacs/"
  "/home/kim/.local/src/dmenu/"
- "/home/kim/.dotfiles/emacs/"
  "/home/kim/Dokumenter/"
  "/home/kim/"
  "/home/kim/.dotfileslinux/config/emacs/"
@@ -36,10 +36,10 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "init.el"
+ "desktop.el"
  "alacritty.yml"
  "start-exwm.sh"
- "desktop.el"
- "init.el"
  "config.h"
  "testtable.org"
  "battery.el"
@@ -50,23 +50,23 @@
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/home/kim/.dotfiles/emacs/" (25185 42370 524792 936000) "transient/" "history" "ido.last" "ido.last~" "init.el" "elpa/" "url/" "tutorial/" "tramp" "themes/" "network-security.data" "init.el~" "hallo.theme.el~" "hallo.theme.el-bak" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/.config/emacs/" (25183 39031 166993 864000) "transient/" "history" "ido.last" "ido.last~" "init.el" "elpa/" "url/" "tutorial/" "tramp" "themes/" "network-security.data" "init.el~" "hallo.theme.el~" "hallo.theme.el-bak" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/.config/" (25183 431 588214 182000) "systemd/" "mimeapps.list" "BraveSoftware/" "yay/" "emacs/" "gnome-session/" "newsboat/" "mpd/" "fish/" "calibre/" "dunst/" "alacritty/" "dleyna-renderer-service.conf" "nautilus/" "gnome-boxes/" "gtk-3.0/" "user-dirs.dirs" ".gsd-keyboard.settings-ported" "goa-1.0/" "pulse/" "evolution/" "dconf/" "ibus/" "user-dirs.locale" "../" "./")
+
+ ("/home/kim/" (25183 38523 80350 960000) "vterm" ".authinfo.gpg" ".authinfo.gpg~" ".pki/" ".fehbg" ".gnupg/" ".Xresources" ".xprofile" ".mbsyncrc" "Mail/" ".scripts/" ".baggrunde/" ".dotfiles/" "Videoklip/" "Billeder/" "Musik/" "Dokumenter/" "Offentligt/" "Skabeloner/" "Hentet/" "Skrivebord/" ".local/" ".cache/" ".bash_history" ".config/" ".bashrc" ".bash_profile" ".bash_logout" "../" "./")
+
  ("/home/kim/.config/alacritty/" (25182 59243 271398 476000) "#alacritty.yml#" "alacritty.yml" "../" "./")
 
  ("/home/kim/.config/emacs/exwm/" (25182 48062 363141 988000) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
-
- ("/home/kim/.config/emacs/" (25182 59247 898065 245000) "ido.last" "ido.last~" "transient/" "history" "auto-save-list/" "init.el" "elpa/" "tutorial/" "tramp" "themes/" "network-security.data" "init.el~" "hallo.theme.el~" "hallo.theme.el-bak" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
 
  ("/home/kim/.local/src/dmenu/" (25182 57238 541353 811000) "stest" "stest.o" "dmenu" "util.o" "drw.o" "dmenu.o" "util.h" "util.c" "stest.c" "stest.1" "drw.h" "drw.c" "dmenu_run" "dmenu_path" "dmenu.c" "dmenu.1" "config.mk" "config.h" "config.def.h" "arg.h" "README" "Makefile" "LICENSE" "../" "./")
 
  ("/home/kim/.local/src/" (25182 57220 734686 755000) "dmenu/" "yay/" "../" "./")
 
  ("/home/kim/.local/" (25182 56454 178156 784000) "bin/" "src/" "share/" "../" "./")
-
- ("/home/kim/.config/" (25182 56358 318155 798000) "mimeapps.list" "BraveSoftware/" "yay/" "emacs/" "gnome-session/" "newsboat/" "mpd/" "fish/" "calibre/" "dunst/" "alacritty/" "dleyna-renderer-service.conf" "nautilus/" "gnome-boxes/" "gtk-3.0/" "user-dirs.dirs" ".gsd-keyboard.settings-ported" "goa-1.0/" "pulse/" "evolution/" "dconf/" "ibus/" "user-dirs.locale" "../" "./")
-
- ("/home/kim/" (25182 56354 51489 85000) ".pki/" ".fehbg" ".authinfo.gpg" ".gnupg/" ".Xresources" ".xprofile" ".mbsyncrc" "Mail/" ".scripts/" ".baggrunde/" ".dotfiles/" "Videoklip/" "Billeder/" "Musik/" "Dokumenter/" "Offentligt/" "Skabeloner/" "Hentet/" "Skrivebord/" ".local/" ".cache/" ".bash_history" ".config/" ".bashrc" ".bash_profile" ".bash_logout" "../" "./")
-
- ("/home/kim/.dotfiles/emacs/" (25174 38361 966092 261000) "ido.last" "ido.last~" "init.el" "init.el~" "themes/" "hallo.theme.el-bak" "tutorial/" "battery.el" "auto-save-list/" "transient/" "history" ".last-package-update-day" "elpa/" "tramp" "network-security.data" "hallo.theme.el~" "exwm/" "desktop.el-bak" "desktop.el" ".mbsyncrc~" ".mbsyncrc" ".authinfo" "../" "./")
 
  ("/home/kim/.ssh/" (25174 29627 506501 958000) "known_hosts" "known_hosts.old" "id_rsa.pub" "id_rsa" "../" "./")
 
