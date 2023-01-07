@@ -5,8 +5,8 @@
 
 ;; Make frame transparency overridable
 (defvar efs/frame-transparency '(90 . 90))
-(set-frame-parameter (selected-frame) 'alpha '(80 80))
-(add-to-list 'default-frame-alist '(alpha 90 80))
+(set-frame-parameter (selected-frame) 'alpha '(95 95))
+(add-to-list 'default-frame-alist '(alpha 95 95))
 
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
@@ -46,8 +46,8 @@
 
 ;; Set the default font
 (set-face-attribute 'default nil
-                    :family "Source Code Pro"
-                    :height 110
+                    :family "FiraCode Nerd Font"
+                    :height 140
                     :weight 'normal
                     :width 'normal)
 
@@ -139,7 +139,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-acario-dark t)
+  (load-theme 'doom-tomorrow-night t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)

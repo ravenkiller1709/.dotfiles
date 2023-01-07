@@ -171,11 +171,16 @@
         ([?\s-d] . (lambda (command)
 		     (interactive (list (read-shell-command "$ ")))
 		     (start-process-shell-command command nil command)))
-	;; Bind "s-b" to launch librewolf
+	;; Bind "s-w" to launch librewolf
 	([?\s-w] . (lambda ()
 		     (interactive)
 		     (start-process "" nil "/usr/bin/librewolf")))
+	;; Bind "s-w" to launch librewolf
 
+	([?\s-p] . (lambda ()
+		     (interactive)
+                     (start-process "" nil "/home/kim/.scripts/printscreen.sh"))) 
+	
 	([?\s-z] . (lambda ()
 		     (interactive)
 		     (start-process "" nil "/usr/bin/brave-nightly")))
