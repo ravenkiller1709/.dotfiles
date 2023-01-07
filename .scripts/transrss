@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# starts transmission-rss in the background
+
+transmission-rss -f

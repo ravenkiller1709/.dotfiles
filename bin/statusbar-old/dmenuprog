@@ -1,0 +1,1 @@
+ls ~/.local/bin | dmenu > output && chmod 755 output && ./output && rm output

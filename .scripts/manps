@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "hvilken manpage vil du læse?"
+read manpage
+man -t ${manpage} > ${manpage}.ps
+
+zathura ${manpage}.ps
+
+rm ${manpage}.ps

@@ -1,3 +1,6 @@
 #!/bin/sh
-sudo tlp-stat -b > /tmp/bat.log
-st -e vi /tmp/bat.log
+sudo tlp-stat -b >> bat.log
+
+sleep 3s
+
+alacritty -e vim bat.log

@@ -1,3 +1,4 @@
+
 #!/bin/sh
 while :
 do
@@ -6,6 +7,6 @@ do
     pakgs2="$(ls /home/kim/.local/share/mail/mail4kruse@gmail.com/INBOX/new | wc -l)"
     sum=$((pakgs1 + $pakgs2))
     }
-echo " 📬 $sum "
+echo "  $sum "
     sleep 300
 done

@@ -1,4 +1,2 @@
 #!/bin/sh
-sudo ipsec restart
-sleep 10
-sudo ipsec up kimvpn
+sudo openvpn $HOME/.config/vpn/client.ovpn &

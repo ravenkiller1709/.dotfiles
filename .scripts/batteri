@@ -7,19 +7,19 @@ sum=$(($n+$m))
 ans=$(($sum / 2))
 
 if [ "$ans" -gt 97 ]; then
-   icon="<fc=#4B905E>   </fc>"
+   icon="   "
 elif [ "$ans" -gt 75 ]; then
-    icon="<fc=#B5BD68>   </fc>"
+    icon="   "
 elif [ "$ans" -gt 50 ]; then
-    icon="<fc=#F0C674>   </fc>"
+    icon="   "
 elif [ "$ans" -gt 25 ]; then
-    icon="<fc=#de935f>   </fc>"
+    icon="   "
 elif [ "$ans" -gt 10 ]; then
-    icon="<fc=#cc6666>   </fc>"
+    icon="   "
 else
-    icon="<fc=#cc6666>   </fc>"
+    icon="   "
 fi
 
 
 
-echo "${icon}${ans} %"
+echo -e "%{B#707880}%{F#1d1f21}${icon}%{F#1d1f21} %{B#c5c8c6} BAT ${ans} % "

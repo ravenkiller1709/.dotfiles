@@ -1,0 +1,25 @@
+#!/bin/sh
+
+n=$(cat /sys/class/power_supply/BAT0/capacity)
+m=$(cat /sys/class/power_supply/BAT1/capacity)
+
+sum=$(($n+$m))
+ans=$(($sum / 2))
+
+if [ "$ans" -gt 97 ]; then
+   icon="%{F#a3be8c}   "
+elif [ "$ans" -gt 75 ]; then
+    icon="%{F#a3be8c}   "
+elif [ "$ans" -gt 50 ]; then
+    icon="%{F#a3be8c}   "
+elif [ "$ans" -gt 25 ]; then
+    icon="%{F#ebcb8b}   "
+elif [ "$ans" -gt 10 ]; then
+    icon="%%{F#d08770}   "
+else
+    icon="%{F#bf616a}   "
+fi
+
+
+
+echo -e "%{F#f0c674}BAT ${icon}%{F#c5c8c6}${ans} %"

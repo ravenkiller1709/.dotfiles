@@ -15,5 +15,7 @@ gpgconf --reload gpg-agent &
 
 gpg-connect-agent /bye
 
+/home/kim/.config/polybar/launch.sh &
+
 # Fire it up
 exec dbus-launch --exit-with-session emacs -mm --debug-init -l ~/.config/emacs/desktop.el

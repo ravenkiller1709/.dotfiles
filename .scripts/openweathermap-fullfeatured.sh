@@ -1,4 +1,10 @@
 #!/bin/sh
+RED='\033[0;31m'
+BROWN='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+GREY='\033[0;37m'
 
 get_icon() {
     case $1 in
@@ -109,6 +115,6 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
         daytime=" $(get_duration "$((sun_rise-now))")"
     fi
 
-    echo "$(get_icon "$current_icon") $current_temp$SYMBOL  $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL   $daytime"
+    printf "$(get_icon "$current_icon") $current_temp$SYMBOL $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL   $daytime"
 fi
 

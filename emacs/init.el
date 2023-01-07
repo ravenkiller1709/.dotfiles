@@ -5,8 +5,8 @@
 
 ;; Make frame transparency overridable
 (defvar efs/frame-transparency '(90 . 90))
-(set-frame-parameter (selected-frame) 'alpha '(90 50))
-(add-to-list 'default-frame-alist '(alpha 90 50))
+(set-frame-parameter (selected-frame) 'alpha '(80 80))
+(add-to-list 'default-frame-alist '(alpha 90 80))
 
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
@@ -60,6 +60,7 @@
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
+			 ("gnu-devel" . "https://elpa.gnu.org/devel/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
@@ -105,15 +106,6 @@
       nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Magit
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package magit
-  :ensure t)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;; Which key
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -122,32 +114,42 @@
   :config (which-key-mode))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;; Magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package magit
+  :commands magit-status
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;; NOTE: Make sure to configure a GitHub token before using this package!
+;; - https://magit.vc/manual/forge/Token-Creation.html#Token-Creation
+;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
+(use-package forge
+  :after magit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;; DOOM THEMES
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  
-;;(use-package doom-themes
-;;  :ensure t
-;;  :config
-;;  ;; Global settings (defaults)
-;;  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;;  (load-theme 'doom-solarized-dark t)1)
-;;
-;;;; Enable flashing mode-line on errors
-;; (doom-themes-visual-bell-config)
-;;
-;;;; Enable custom neotree theme
-;; (doom-themes-neotree-config)  ; all-the-icons fonts must be installed!
 
-(use-package dracula-theme
+(use-package doom-themes
+  :ensure t
   :config
-  (load-theme 'dracula t)
-  :ensure t)
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-acario-dark t)
 
-;;(add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes/") ;; for themes loaded locally
-;;(load-theme 'ubuntu-theme t)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 (use-package doom-modeline
   :ensure t
@@ -156,6 +158,7 @@
 	   (doom-modeline-bar-width 10)
 	   (doom-modeline-buffer-file-name-style 'auto)
 	   (doom-modeline-icon (display-graphic-p))
+	   (setq doom-modeline-workspace-name t)
 	   (doom-modeline-major-mode-icon t)
 	   (doom-modeline-major-mode-color-icon t)
 	   (doom-modeline-enable-word-count t)
@@ -450,23 +453,7 @@
 
   (setq mu4e-contexts
         (list
-         ;; Work account
-         (make-mu4e-context
-          :name "Work"
-          :match-func
-            (lambda (msg)
-              (when msg
-                (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
-          :vars '((user-mail-address . "mail4kruse@gmail.com")
-                  (user-full-name    . "Kim Kruse")
-		  (smtpmail-smtp-server  . "smtp.gmail.com")
-                  (smtpmail-smtp-service . 465)
-                  (smtpmail-stream-type  . ssl)
-                  (mu4e-drafts-folder  . "/Gmail/Drafts")
-                  (mu4e-sent-folder  . "/Gmail/Sent Mail")
-                  (mu4e-refile-folder  . "/Gmail/[Gmail]/Alle mails")
-                  (mu4e-trash-folder  . "/Gmail/[Gmail]/Trash")))
-
+         
 	 ;; Hotmail account
          (make-mu4e-context
           :name "Work"
@@ -502,10 +489,10 @@
                   (mu4e-trash-folder  . "/kimkruse/Trash")))))
 
   (setq mu4e-maildir-shortcuts
-      '(("/kimkruse/Inbox"             . ?i)
+      '(("/kimkruse/INBOX"             . ?i)
         ("/kimkruse/Sent" . ?s)
         ("/Hotmail/Inbox"    . ?d)
-        ("/Gmail/Inbox"     . ?t))))
+        ("/hotmail/Sent"     . ?t))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -513,7 +500,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dracula-theme darcula-theme vterm exwm dired-hide-dotfiles dired-open all-the-icons-dired dired-single eshell-git-prompt visual-fill-column org-bullets hydra orderless vertico doom-modeline doom-themes magit auto-package-update use-package)))
+   '(doom-gruvbox-theme gruvbox-theme doom-dark+-theme dark+-theme exwm-modeline exwm-x dracula-theme darcula-theme vterm exwm dired-hide-dotfiles dired-open all-the-icons-dired dired-single eshell-git-prompt visual-fill-column org-bullets hydra orderless vertico doom-modeline doom-themes magit auto-package-update use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

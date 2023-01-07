@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+DMTERM="/usr/local/bin/st"
+
+declare -a options=(
+"ST - buildst"
+"DMENU - builddmenu"
+"DWM - builddwm"
+"quit"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -c -l 10 -p 'Kompiler Suckless:')
+
+if [[ "$choice" == "quit" ]]; then
+      echo "Programmet er afsluttet." && exit 1
+
+elif [ "$choice" ]; then
+  cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+      $DMTERM -e $cfg
+
+else
+      echo "Programmet er afsluttet." && exit 1
+fi

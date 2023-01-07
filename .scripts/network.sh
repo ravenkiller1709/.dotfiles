@@ -2,7 +2,7 @@
 # icons depend on nerdfonts being installed
 hostname="${HOSTNAME:-${hostname:-$(hostname)}}"
 network() {
-wire="$(ip a | grep 'enp3s0' | grep inet | wc -l)"
+wire="$(ip a | grep 'enp4s0' | grep inet | wc -l)"
 wifi="$(ip a | grep wlp4s0 | grep inet | wc -l)"
 
 if [ $wire = 1 ]; then 

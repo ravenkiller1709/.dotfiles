@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# a script to build dwm after editing it
+
+cd ~/.config/dwm && sudo chown kim:kim * && mv config.h config.def.h && sudo make clean install && notify-send "Dwm er opdateret"
+

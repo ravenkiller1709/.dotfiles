@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# a script to build st after editing it
+
+cd ~/.config/st && sudo chown kim:kim * && mv config.h config.def.h && sudo make clean install
+

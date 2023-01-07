@@ -1,0 +1,251 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;;background = #282A2E
+;;background-alt = #373B41
+;;foreground = #C5C8C6
+;;primary = #F0C674
+;;secondary = #8ABEB7
+;;alert = #A54242
+disabled = #707880
+
+
+; special
+foreground = #c5c8c6
+background = #1d1f21
+cursorColor = #c5c8c6
+
+;black
+color0 = #282a2e
+color8 = #373b41
+
+;red
+color1 = #a54242
+color9 = #cc6666
+
+;green
+color2 = #8c9440
+color10 = #b5bd68
+
+;yellow
+color3 = #de935f
+color11 = #f0c674
+
+;blue
+color4 = #5f819d
+color12 = #81a2be
+
+;magenta
+color5 = #85678f
+color13 = #b294bb
+
+;cyan
+color6 = #5e8d87
+color14 = #8abeb7
+
+;white
+color7 = #707880
+color15 = #c5c8c6
+
+
+
+[bar/example]
+width = 100%
+height = 22pt
+radius = 6
+
+; dpi = 96
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3pt
+
+border-size = 4pt
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 1
+
+module-margin = 1
+
+;separator = |
+separator-foreground = ${colors.disabled}
+
+font-0 = MesloLGS Nerd Font:pixelsize=12;2
+
+modules-left = xworkspaces xwindow
+modules-right = mpd batteri pulseaudio xkeyboard memory cpu wifi date
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+; tray-position = right
+
+; wm-restack = generic
+; wm-restack = bspwm
+; wm-restack = i3
+
+; override-redirect = true
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.background}
+label-active-underline= ${colors.color10}
+label-active-padding = 1
+
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.color9}
+label-urgent-padding = 1
+
+label-empty = 
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+
+[module/batteri]
+type = custom/script
+exec = /home/kim/.dots/.scripts/batteri
+tail = true
+interval = 0
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-prefix = " "
+format-volume-prefix-padding = 1
+format-volume-prefix-padding-background = ${colors.color6}
+format-volume-prefix-foreground = ${colors.background}
+format-volume-prefix-background = ${colors.color3}
+format-volume-padding = 0
+format-volume = <label-volume>
+format-volume-foreground = ${colors.background}
+format-volume-background = ${colors.color11}
+label-volume = VOL %percentage%%
+label-volume-padding = 1
+
+label-muted = muted
+label-muted-foreground = ${colors.background}
+label-muted-background = ${colors.color11}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color5}
+format-prefix = "  "
+format-prefix-padding = 1
+label-layout = " LANG %layout% "
+label-layout-foreground = ${colors.background}
+label-layout-background = ${colors.color13}
+
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-foreground = ${colors.background}
+label-indicator-background = ${colors.color3}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "﬙ "
+format-prefix-padding = 1
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color4}
+label-foreground = ${colors.background}
+label-background = ${colors.color12}
+label = " RAM %percentage_used:2%% "
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-padding = 1
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color1}
+label-foreground = ${colors.background}
+label-background = ${colors.color9}
+label = " CPU %percentage:2%% "
+
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+
+[module/wifi]
+type = custom/script
+exec = $HOME/.scripts/network
+
+[module/mpd]
+type = custom/script
+exec = $HOME/.scripts/mpd
+
+
+[module/wlan]
+inherit = network-base
+interface-type = wireless
+label-connected = %essid% %local_ip%
+
+[module/eth]
+inherit = network-base
+interface-type = wired
+label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
+
+[module/date]
+type = internal/date
+interval = 1
+format-prefix = " "
+format-prefix-padding = 1
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color2}
+label-foreground = ${colors.background}
+label-background = ${colors.color10}
+date = " %H:%M "
+date-alt = " %Y-%m-%d %H:%M:%S "
+
+label = %date%
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+; vim:ft=dosini

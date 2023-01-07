@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# a script to build dmenu after editing it
+
+cd ~/.config/dmenu && sudo chown kim:kim * && mv config.h config.def.h && sudo make clean install
+

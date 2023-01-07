@@ -2,7 +2,7 @@
   (interactive)
   ;; NOTE: You will need to update this to a valid background path!
   (start-process-shell-command
-      "feh" nil  "feh --bg-scale ~/.baggrunde/0003.jpg"))
+      "feh" nil  "feh --bg-scale ~/.baggrunde/0147.jpg"))
 
 ;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
 (menu-bar-mode -1)
@@ -56,7 +56,7 @@
 
 (defun efs/exwm-update-title ()
   (pcase exwm-class-name
-    ("Firefox" (exwm-workspace-rename-buffer (format "Firefox: %s" exwm-title)))))
+    ("Librewolf" (exwm-workspace-rename-buffer (format "Librewolf: %s" exwm-title)))))
 
 ;; This function isn't currently used, only serves as an example how to
 ;; position a window
@@ -70,7 +70,7 @@
 (defun efs/configure-window-by-class ()
   (interactive)
   (pcase exwm-class-name
-    ("Firefox" (exwm-workspace-move-window 2))
+    ("LibreWolf" (exwm-workspace-move-window 2))
     ("Sol" (exwm-workspace-move-window 3))
     ("mpv" (exwm-floating-toggle-floating)
            (exwm-layout-toggle-mode-line))))
@@ -171,10 +171,10 @@
         ([?\s-d] . (lambda (command)
 		     (interactive (list (read-shell-command "$ ")))
 		     (start-process-shell-command command nil command)))
-	;; Bind "s-b" to launch firefox
-	([?\s-b] . (lambda ()
+	;; Bind "s-b" to launch librewolf
+	([?\s-w] . (lambda ()
 		     (interactive)
-		     (start-process "" nil "/usr/bin/firefox")))
+		     (start-process "" nil "/usr/bin/librewolf")))
 
 	([?\s-z] . (lambda ()
 		     (interactive)
@@ -229,15 +229,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;(defun brighter ()
-;;  (interactive)
-;;  (start-process-shell-command "xbacklight + 10" nil "xbacklight + 10"))
-;;  (exwm-input-set-key (kbd "<XF86MonBrightnessUp>") 'brighter)
+(defun brighter ()
+  (interactive)
+  (start-process-shell-command "xbacklight + 10" nil "xbacklight + 10"))
+  (exwm-input-set-key (kbd "<XF86MonBrightnessUp>") 'brighter)
 
-;;  (defun dimmer ()
-;;  (interactive)
-;;  (start-process-shell-command "xbacklight - 10" nil "xbacklight - 10"))
-;;  (exwm-input-set-key (kbd "<XF86MonBrightnessDown>") 'dimmer)
+  (defun dimmer ()
+  (interactive)
+  (start-process-shell-command "xbacklight - 10" nil "xbacklight - 10"))
+  (exwm-input-set-key (kbd "<XF86MonBrightnessDown>") 'dimmer)
 
 (defun louder ()
   (interactive)

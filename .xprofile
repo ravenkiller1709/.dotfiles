@@ -9,4 +9,4 @@ xfce4-power-manager &
 dbus-launch &
 xrdb -load ~/.Xresources &
 dropbox &
-feh --bg-scale ~/.baggrunde/0116.jpg &
+#feh --bg-scale ~/.baggrunde/0116.jpg &

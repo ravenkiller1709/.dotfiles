@@ -25,10 +25,10 @@ ExpireUnread no
 # End profile
 
 IMAPStore kimkruse@hotmail.com-remote
-Host imap-mail.outlook.com
+Host outlook.office365.com
 Port 993
 User kimkruse@hotmail.com
-PassCmd "emacsclient -e \"(efs/lookup-password :host \\\"imap-mail.outlook.com\\\" :user \\\"kimkruse@hotmail.com\\\")\" | cut -d '\"' -f2"
+PassCmd "emacsclient -e \"(efs/lookup-password :host \\\"outlook.office365.com\\\" :user \\\"kimkruse@hotmail.com\\\")\" | cut -d '\"' -f2"
 #PassCmd "pass kimkruse@hotmail.com"
 AuthMechs LOGIN
 SSLType IMAPS
@@ -49,31 +49,3 @@ SyncState *
 MaxMessages 0
 ExpireUnread no
 # End profile
-
-
-IMAPStore mail4kruse@gmail.com-remote
-Host imap.gmail.com
-Port 993
-User mail4kruse@gmail.com
-PassCmd "emacsclient -e \"(efs/lookup-password :host \\\"imap.gmail.com\\\" :user \\\"mail4kruse@gmail.com\\\")\" | cut -d '\"' -f2"
-#PassCmd "pass mail4kruse@gmail.com"
-AuthMechs LOGIN
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-MaildirStore mail4kruse@gmail.com-local
-Subfolders Verbatim
-Path /home/kim/Mail/Gmail/
-Inbox /home/kim/Mail/Gmail/INBOX
-
-Channel mail4kruse@gmail.com
-Expunge Both
-Master :mail4kruse@gmail.com-remote:
-Slave :mail4kruse@gmail.com-local:
-Patterns * !"[Gmail]/All Mail"
-Create Both
-SyncState *
-MaxMessages 0
-ExpireUnread no
-# End profile
-

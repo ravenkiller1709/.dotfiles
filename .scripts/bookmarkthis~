@@ -1,0 +1,11 @@
+#!/bin/sh
+
+bookmark='$(xclip -o)'
+file='$HOME/.local/share/snippets'
+
+
+
+
+
+
+echo '$bookmark' >> '$file'

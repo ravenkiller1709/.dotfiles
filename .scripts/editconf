@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+DMEDITOR="/usr/bin/nvim"
+
+declare -a options=(
+"Neovim - $HOME/.config/nvim/init.vim"
+"Editconf - $HOME/.scripts/editconf"
+"Buildconf - $HOME/.scripts/buildconf"
+"Xresources - $HOME/.Xresources"
+"xinitrc - $HOME/.xinitrc"
+"Alias - $HOME/.dots/.aliasrc"
+"Dwm - $HOME/.config/dwm/config.h"
+"DwmBar - $HOME/.config/scripts/bar.sh"
+"Dmenu - $HOME/.config/dmenu/config.h"
+"Dunst - $HOME/.config/dunst/dunstrc"
+"St - $HOME/.config/st/config.h"
+"Zsh - $HOME/.config/zsh/.zshrc"
+"Sxiv - $HOME/.config/sxiv/exec/key-handler"
+"Alacritty - $HOME/.config/alacritty/alacritty.yml"
+"quit"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -c -l 10 -p 'Rediger dotfiler:')
+
+if [[ "$choice" == "quit" ]]; then
+      echo "Programmet er afsluttet." && exit 1
+
+elif [ "$choice" ]; then
+  cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+      $DMEDITOR "$cfg"
+
+else
+      echo "Programmet er afsluttet." && exit 1
+fi
