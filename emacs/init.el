@@ -46,7 +46,7 @@
 
 ;; Set the default font
 (set-face-attribute 'default nil
-                    :family "FiraCode Nerd Font"
+                    :family "MesloLGLDZ Nerd Font"
                     :height 140
                     :weight 'normal
                     :width 'normal)
@@ -158,7 +158,6 @@
 	   (doom-modeline-bar-width 10)
 	   (doom-modeline-buffer-file-name-style 'auto)
 	   (doom-modeline-icon (display-graphic-p))
-	   (setq doom-modeline-workspace-name t)
 	   (doom-modeline-major-mode-icon t)
 	   (doom-modeline-major-mode-color-icon t)
 	   (doom-modeline-enable-word-count t)
@@ -168,7 +167,7 @@
 
 
 
-(display-battery-mode 1)
+(display-battery-mode -1)
 
 ;;(display-time-mode nil)
 ;;(setq display-time-24hr-format nil)
@@ -500,7 +499,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(doom-gruvbox-theme gruvbox-theme doom-dark+-theme dark+-theme exwm-modeline exwm-x dracula-theme darcula-theme vterm exwm dired-hide-dotfiles dired-open all-the-icons-dired dired-single eshell-git-prompt visual-fill-column org-bullets hydra orderless vertico doom-modeline doom-themes magit auto-package-update use-package)))
+   '(eshell-vterm multi-vterm doom-gruvbox-theme gruvbox-theme doom-dark+-theme dark+-theme exwm-modeline exwm-x dracula-theme darcula-theme vterm exwm dired-hide-dotfiles dired-open all-the-icons-dired dired-single eshell-git-prompt visual-fill-column org-bullets hydra orderless vertico doom-modeline doom-themes magit auto-package-update use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

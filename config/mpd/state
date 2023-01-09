@@ -1,9 +1,7 @@
 sw_volume: 62
 audio_device_state:1:mpd-alsa
 audio_device_state:1:toggle_visualizer
-state: pause
-current: 1
-time: 36.339000
+state: stop
 random: 0
 repeat: 0
 single: 0
@@ -12,6 +10,14 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:Bryan Ferry - Dylanesque/03.Make You Feel My Love.mp3
-1:Bob Dylan - Dylan Revisited All Time Best CD4/06.Make You Feel My Love.mp3
+0:Dave Matthews Band - Away From The World/01.Broken Things.mp3
+1:Dave Matthews Band - Away From The World/02.Belly Belly Nice.mp3
+2:Dave Matthews Band - Away From The World/03.Mercy.mp3
+3:Dave Matthews Band - Away From The World/04.Gaucho.mp3
+4:Dave Matthews Band - Away From The World/05.Sweet.mp3
+5:Dave Matthews Band - Away From The World/06.The Riff.mp3
+6:Dave Matthews Band - Away From The World/07.Belly Full.mp3
+7:Dave Matthews Band - Away From The World/08.If Only.mp3
+8:Dave Matthews Band - Away From The World/09.Rooftop.mp3
+9:Dave Matthews Band - Away From The World/10.Snow Outside.mp3
 playlist_end

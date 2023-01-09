@@ -2,6 +2,7 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/home/kim/.dotfiles/" . "emacs/")
  ("/home/kim/.dotfiles/config/" . "emacs/")
  ("/home/kim/.scripts/" . "spotify/")
  ("/home/kim/.local/src/" . "dmenu/")
@@ -13,24 +14,24 @@
  ("/doas::/" . "etc/")
  ("/home/" . "kim/")
  ("/home/kim/.config/emacs/" . "exwm/")
- ("/home/kim/.config/" . "emacs/")
+ ("/home/kim/.config/" . "polybar/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
- "/home/kim/.config/emacs/"
- "/home/kim/.scripts/"
- "/home/kim/.dotfiles/emacs/"
- "/home/kim/.dotfiles/config/emacs/"
  "/home/kim/.config/polybar/"
+ "/home/kim/.config/emacs/"
+ "/home/kim/.dotfiles/emacs/"
  "/home/kim/"
+ "/home/kim/Dokumenter/"
+ "/home/kim/.config/emacs/exwm/"
+ "/home/kim/.scripts/"
+ "/home/kim/.dotfiles/config/emacs/"
  "/home/kim/.dots/.scripts/"
  "/home/kim/.config/"
  "/home/kim/.dotfiles/emacs/exwm/"
- "/home/kim/.config/emacs/exwm/"
  "/home/kim/.config/alacritty/"
  "/home/kim/.local/src/dmenu/"
- "/home/kim/Dokumenter/"
  "/home/kim/.dotfileslinux/config/emacs/"
  "/doas::/root/"
  "/home/kim/.dotfileslinux/config/emacs/exwm/"
@@ -44,39 +45,53 @@
 
 ;; ----- ido-work-file-list -----
 (
- "desktop.el"
- "printscreen.sh"
- "init.el"
  "config.ini"
+ "desktop.el"
+ "init.el"
+ ".authinfo.gpg"
+ "passwordtilemacs"
+ "start-exwm.sh"
+ ".xprofile"
+ "printscreen.sh"
  "batteri"
  "init.el-bak"
- "network"
- "battery-combined-tlp.sh"
- "dleyna-renderer-service.conf"
- ".xprofile"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/home/kim/.dotfiles/emacs/" (25529 59837 40250 809000) "ido.last" "ido.last~" "eshell/" "init.el" "forge-database.sqlite" "init.el~" "init.el-bak" "elpa/" "auto-save-list/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "history" "hallo.theme.el~" "hallo.theme.el-bak" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+ ("/home/kim/.config/polybar/" (25532 14574 359997 169000) "launch.sh" "config.ini~" "config.ini" "../" "./")
 
- ("/home/kim/.scripts/" (25529 59583 333581 496000) "printscreen.sh" "printscreen.sh~" "network" "network~" "batteri~" "updates-pacman-aurhelper.sh" "transrss" "transclr" "transadd" "tordone~" "tordone" "notifytorrents" "manps" "editconf" "buildst" "builddwm" "builddmenu" "buildconf" "bookmarkthis~" "bookmarkthis.sh" "batteri-slstatus" "$file" "#openweathermap-fullfeatured.sh#" "wifi.sh" "weathermon" "weatherbar.sh" "weather.sh" "weather.py" "wallpaper_script.sh" "wallpaper-wrap" "wallpaper-save" "wallpaper-live" "wallp" "wal" "vpnup" "vpned" "vpndown" "vpn-openvpn-status/" "vpn-openvpn-isrunning/" "vpn" "volume.sh" "vol.sh" "upgrades.sh" "time.sh" "spotify1.sh" "spotify/" "spotify.sh" "spectrwm-bindings.sh" "snippy.sh" "shufman" "scroll_spotify_status.sh" "sb-volume" "sb-mailbox" "sb-mail.sh" "quieter" "post" "pmenu" "player.py" "player-mpris-tail.py" "pacpackages" "packages1.sh" "packages.sh" "openweathermap-fullfeatured.sh" "notetaker" "network.sh" "mpd" "mostRecentNote" "memory.sh" "mail2.sh" "mail1.sh" "mail.sh" "louder" "lok" "livestream.sh" "livebackground.sh" "ld-exit" "inbox-imap-shellnetrc.sh" "hush" "hdd.sh" "get_spotify_status.sh" "forecast.sh-old" "forecast.sh-luke" "forecast.sh" "fehbg" "dwmbar" "dwm-iconbar" "crypto.py" "cpu.sh" "config" "clock.sh" "chwall.sh" "buildNote" "bmenu" "bg.sh" "battery.sh" "battery-combined-udev.sh" "battery-combined-tlp.sh" "batteri" "batmon" "README.md" "../" "./")
+ ("/home/kim/.config/" (25532 14355 393330 785000) "font-manager/" "fontconfig/" "autostart/" "mimeapps.list" "google-chrome/" "alacritty/" "dmenu/" "systemd/" "gnome-session/" "dleyna-renderer-service.conf" "nautilus/" "xdg-terminals.list" "GNOME-xdg-terminals.list" "gnome-boxes/" ".gsd-keyboard.settings-ported" "gtk-3.0/" "goa-1.0/" "evolution/" "pulse/" "dconf/" "ibus/" "yay/" "emacs/" "zsh/" "shell/" "polybar/" "ncmpcpp/" "mpd/" "dunst/" "user-dirs.locale" "user-dirs.dirs" "../" "./")
 
- ("/home/kim/.config/emacs/" (25529 59837 40250 809000) "ido.last" "ido.last~" "eshell/" "init.el" "forge-database.sqlite" "init.el~" "init.el-bak" "elpa/" "auto-save-list/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "history" "hallo.theme.el~" "hallo.theme.el-bak" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+ ("/home/kim/.config/emacs/" (25532 13793 913331 519000) "ido.last" "ido.last~" "image-dired/" "init.el" "elpa/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "init.el~" "init.el-bak" "history" "hallo.theme.el~" "hallo.theme.el-bak" "forge-database.sqlite" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
 
- ("/home/kim/" (25529 59710 746916 158000) ".zcompdump" "pic-full-230107-2215-52.png" "pic-full-230107-2214-00.png" ".gitconfig" ".ssh/" ".scripts/" ".fehbg" ".zshrc" ".ZipArchive/" ".dots/" "voidlinux_sleep_settings" "terminus-font-4.49.1/" "Stark.org" "S45C-6e22051910200.pdf" "Projekter/" "nvim/" "Nordea 28042022.xlsx" "Nordea 23052022.xlsx" "NFCERT Stream.pdf" "NFCERT Stream.docx" "Mail/" ".authinfo.gpg" ".librewolf/" "Faktura_20220143.pdf" "passwordtilemacs" "client.ovpn" ".xprofile" ".mbsyncrc" ".baggrunde/" ".gnupg/" "Videoklip/" "Billeder/" "Musik/" "Dokumenter/" "Offentligt/" "Skabeloner/" "Hentet/" "Skrivebord/" ".dotfiles/" ".config/" ".local/" ".cache/" ".bash_history" ".bashrc" ".bash_profile" ".bash_logout" "../" "./")
+ ("/home/kim/.dotfiles/config/polybar/" (25532 13953 219997 978000) "launch.sh" "config.ini~" "config.ini" "../" "./")
 
- ("/home/kim/.ssh/" (25529 27996 896432 916000) "known_hosts" "known_hosts.old" "id_rsa.pub" "id_rsa" "../" "./")
+ ("/home/kim/.gnupg/" (25532 1378 684778 517000) "pubring.kbx" "pubring.kbx~" "crls.d/" "random_seed" "openpgp-revocs.d/" "trustdb.gpg" "private-keys-v1.d/" "../" "./")
 
- ("/home/kim/.dotfiles/config/emacs/" (25527 14815 11182 918000) "transient/" "network-security.data" "init.el~" "init.el" "ido.last~" "ido.last" "history" "exwm/" "elpa/" "desktop.el~" "desktop.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+ ("/home/kim/.config/alacritty/" (25531 60665 275001 909000) "alacritty.yml" "../" "./")
 
- ("/home/kim/.dotfiles/config/" (25529 26353 859862 287000) "dmenu/" "polybar/" "polybar-old/" "shell/" "ncmpcpp/" "zsh/" "ranger/" "nvim/" "newsboat/" "mpd/" "i3/" "fish/" "emacs/" "dunst/" "calibre/" "alacritty/" "../" "./")
+ ("/home/kim/.scripts/" (25531 56511 348483 729000) "wifi.sh" "weathermon" "weatherbar.sh" "weather.sh" "weather.py" "wallpaper_script.sh" "wallpaper-wrap" "wallpaper-save" "wallpaper-live" "wallp" "wal" "vpnup" "vpned" "vpndown" "vpn-openvpn-status/" "vpn-openvpn-isrunning/" "vpn" "volume.sh" "vol.sh" "upgrades.sh" "updates-pacman-aurhelper.sh" "transrss" "transclr" "transadd" "tordone~" "tordone" "time.sh" "spotify1.sh" "spotify/" "spotify.sh" "spectrwm-bindings.sh" "snippy.sh" "shufman" "scroll_spotify_status.sh" "sb-volume" "sb-mailbox" "sb-mail.sh" "quieter" "printscreen.sh~" "printscreen.sh" "post" "pmenu" "player.py" "player-mpris-tail.py" "pacpackages" "packages1.sh" "packages.sh" "openweathermap-fullfeatured.sh" "notifytorrents" "notetaker" "network~" "network.sh" "network" "mpd" "mostRecentNote" "memory.sh" "manps" "mail2.sh" "mail1.sh" "mail.sh" "louder" "lok" "livestream.sh" "livebackground.sh" "ld-exit" "inbox-imap-shellnetrc.sh" "hush" "hdd.sh" "get_spotify_status.sh" "forecast.sh-old" "forecast.sh-luke" "forecast.sh" "fehbg" "editconf" "dwmbar" "dwm-iconbar" "crypto.py" "cpu.sh" "config" "clock.sh" "chwall.sh" "buildst" "builddwm" "builddmenu" "buildconf" "buildNote" "bookmarkthis~" "bookmarkthis.sh" "bmenu" "bg.sh" "battery.sh" "battery-combined-udev.sh" "battery-combined-tlp.sh" "batteri~" "batteri-slstatus" "batteri" "batmon" "README.md" "$file" "#openweathermap-fullfeatured.sh#" "../" "./")
 
- ("/home/kim/.dotfiles/config/polybar/" (25529 37211 200288 121000) "config.ini" "config.ini~" "launch.sh" "../" "./")
+ ("/home/kim/Dokumenter/" (25531 22527 93031 882000) "roman.org" "Stark.org" "mastering-emacs-v2.pdf" "7274622_MERCEDES_Eqa_Eqa 250+ F_AU_OD SUV.pdf" "7274620_POLESTAR_2_78kwh Long Range Single Motor_AU_HA Hatchback.pdf" "7274619_SKODA_Enyaq_204 Hk 77-82kwh F 80_AU_OD SUV.pdf" "7270247_AUDI_Q4_Bev 82kwh 40 E-Tron Attitude_AU_OD SUV.pdf" "7270246_HYUNDAI_Ioniq 5_77.4 Kwt - 229 Hk F Advanced_AU_OD SUV.pdf" "7270245_VOLKSWAGEN_Id.4_204 Hk Performance F Pro Auto_AU_OD SUV.pdf" "authinfo" "literature-epub/" "Ebooks_Collection/" "S45C-6e22051910200.pdf" "Faktura_20220143.pdf" "passwordtilemacs(1)" "passwordtilemacs" "Nordea 28042022.xlsx" "Nordea 23052022.xlsx" "NFCERT Stream.pdf" "NFCERT Stream.docx" "guix-installer-202205080248.iso" "ebooks/" "../" "./")
 
- ("/home/kim/.config/polybar/" (25529 37211 200288 121000) "config.ini" "config.ini~" "launch.sh" "../" "./")
+ ("/home/kim/.dotfiles/emacs/" (25532 13739 376664 922000) "ido.last" "ido.last~" "image-dired/" "init.el" "elpa/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "init.el~" "init.el-bak" "history" "hallo.theme.el~" "hallo.theme.el-bak" "forge-database.sqlite" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
 
- ("/home/kim/.config/" (25529 27459 276464 344000) "neofetch/" "dmenu/" "polybar/" "shell/" "zsh/" "ncmpcpp/" "mpd/" "bashtop/" "systemd/" "font-manager/" "fontconfig/" "gtk-3.0/" "pulse/" "gnome-session/" "yay/" "emacs/" "user-dirs.locale" "user-dirs.dirs" "dleyna-renderer-service.conf" "nautilus/" "xdg-terminals.list" "GNOME-xdg-terminals.list" "gnome-boxes/" ".gsd-keyboard.settings-ported" "goa-1.0/" "evolution/" "dconf/" "ibus/" "../" "./")
+ ("/home/kim/.dotfiles/config/" (25531 19806 927833 242000) "zsh/" "shell/" "ranger/" "polybar/" "polybar-old/" "nvim/" "newsboat/" "ncmpcpp/" "mpd/" "i3/" "fish/" "emacs/" "dunst/" "dmenu/" "calibre/" "alacritty/" "../" "./")
+
+ ("/home/kim/" (25532 1481 431441 511000) ".dropbox-dist/" "Dropbox/" ".dropbox/" ".zcompdump" ".librewolf/" ".pki/" ".authinfo.gpg" ".authinfo.gpg~" ".cargo/" ".ZipArchive/" "voidlinux_sleep_settings" "terminus-font-4.49.1/" "Stark.org" "S45C-6e22051910200.pdf" "Projekter/" "nvim/" "Nordea 28042022.xlsx" "Nordea 23052022.xlsx" "NFCERT Stream.pdf" "NFCERT Stream.docx" "Faktura_20220143.pdf" ".ssh/" "Mail/" "client.ovpn" ".gnupg/" ".Xauthority" ".cache/" ".zshrc" ".xprofile" ".scripts/" ".mbsyncrc" ".baggrunde/" ".dotfiles/" ".local/" ".bash_history" ".config/" "Videoklip/" "Billeder/" "Musik/" "Dokumenter/" "Offentligt/" "Skabeloner/" "Hentet/" "Skrivebord/" ".bashrc" ".bash_profile" ".bash_logout" "../" "./")
+
+ ("/home/kim/.ssh/" (25531 22201 906376 841000) "id_rsa.pub" "id_rsa" "../" "./")
+
+ ("/home/kim/Dokumenter/ebooks/" (25531 22021 129716 639000) "Rupi Kaur/" "Rothenberg, Jess/" "Rick Riordan/" "Ransom Riggs/" "Rainbow Rowell/" "Neil Gaiman/" "Lang Leav/" "John Green/" "Jenny Han/" "Jennifer Niven/" "Haruki Murakami/" "Amy Zhang/" "Welcome to The Universe - Neil deGrasse Tyson.epub" "Waking Gods Book 2 of the Them - Sylvain Neuvel.epub" "Under the Dome_ A Novel - Stephen King.epub" "Things_We_Know_by_Heart_-_Jessi_Kirby.epub" "They Both Die at the End - Adam Silvera.epub" "The_Rest_of_Us_Just_Live_Here_-_Patrick_Ness.epub" "The Sun Is Also a Star - Nicola Yoon.epub" "The Last Time We Say Goodbye - Cynthia Hand.epub" "The Geography of You and Me - Jennifer E. Smith.epub" "Sleeping Giants - Sylvain Neuvel.epub" "README.md" "Patrick Ness - A Monster Calls (v5.0).epub" "Origin.epub" "Origin by Dan Brown.epub" "Norse Mythology - Neil Gaiman.epub" "My Heart and Other Black Holes - Jasmine Warga.epub" "Love Letters to the Dead - Ava Dellaira.epub" "Lily+Rambrisc+-+The+Poems+of+Sylvia+Plath+1960-61.epub" "Levithan, David - Every Day.epub" "Laura_Marx_Fitzgerald_-_The_Gallery.epub" "Jocelyn_Davies_-_The_Odds_of_Lightning.epub" "I-Wrote-This-For-You.epub" "I'll Give You the Sun - Jandy Nelson.epub" "I'll Be There_Chapter 1.pdf" "I Wrote This For You.epub" "Girl_Against_the_Universe_-_Paula_Stokes.epub" "Gayle Forman - Where She Went(1).epub" "Gayle Forman - If I Stay.epub" "Fantastic Beasts and Where to F - J. K. Rowling.epub" "Everything, Everything - Nicola Yoon.epub" "Every Last Word - Tamara Ireland Stone.epub" "Counting by 7s by Holly Goldberg Sloan.epub" "Book_01___The_Bad_Beginning__Revised_.epub" "Beginning of Everything, The - Robyn Schneider.epub" "Astrophysics for People in a Hurry - Neil deGrasse Tyson.epub" "Aristotle and Dante Discover the Secrets of the Universe - Benjamin Alire Sáenz.epub" "Antoine_de_Saint_-_The_Little_Prince.epub" "Anonymous-Diary-of-an-Oxygen-Thief.pdf" "All_in_Pieces_-_Suzanne_Young.epub" "About Time Adam Frank.epub" "A_Series_of_Unfortunate_Events_1__The_Bad_Beginning.epub" "2004 - After Dark.epub" ".git/" "../" "./")
+
+ ("/home/kim/.dotfiles/config/emacs/" (25531 19806 854499 912000) "transient/" "network-security.data" "init.el~" "init.el" "ido.last~" "ido.last" "history" "exwm/" "elpa/" "desktop.el~" "desktop.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/.dotfiles/" (25531 21779 3058 634000) ".xprofile" ".xprofile~" "src/" "fonts/" "emacs/" "dots/" "config/" "bin/" "base-uefi.sh" "base-mbr.sh" ".scripts/" ".mbsyncrc" ".baggrunde/" ".git/" "../" "./")
+
+ ("/home/kim/.dotfiles/emacs/exwm/" (25531 19807 74499 904000) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
+
+ ("/home/kim/.config/emacs/exwm/" (25531 19807 74499 904000) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
 
  ("/home/kim/.dots/.scripts/" (25529 24272 613317 281000) "network" "network~" "batteri" "batteri~" "wifi.sh" "weathermon" "weatherbar.sh" "weather.sh" "weather.py" "wallpaper_script.sh" "wallpaper-wrap" "wallpaper-save" "wallpaper-live" "wallp" "vpnup" "vpned" "vpndown" "vpn-openvpn-status/" "vpn-openvpn-isrunning/" "vpn" "volume.sh" "vol.sh" "upgrades.sh" "updates-pacman-aurhelper.sh" "transrss" "transclr" "transadd" "tordone~" "tordone" "time.sh" "spotify1.sh" "spotify/" "spotify.sh" "spectrwm-bindings.sh" "snippy.sh" "shufman" "scroll_spotify_status.sh" "sb-volume" "sb-mailbox" "sb-mail.sh" "quieter" "post" "pmenu" "player.py" "player-mpris-tail.py" "pacpackages" "packages1.sh" "packages.sh" "openweathermap-fullfeatured.sh" "notifytorrents" "notetaker" "network.sh" "mpd" "mostRecentNote" "memory.sh" "manps" "mail2.sh" "mail1.sh" "mail.sh" "louder" "lok" "livestream.sh" "livebackground.sh" "ld-exit" "inbox-imap-shellnetrc.sh" "hush" "hdd.sh" "get_spotify_status.sh" "forecast.sh-old" "forecast.sh-luke" "forecast.sh" "fehbg" "editconf" "dwmbar" "dwm-iconbar" "crypto.py" "cpu.sh" "config" "clock.sh" "chwall.sh" "buildst" "builddwm" "builddmenu" "buildconf" "buildNote" "bookmarkthis~" "bookmarkthis.sh" "bmenu" "bg.sh" "battery.sh" "battery-combined-udev.sh" "battery-combined-tlp.sh" "batteri-slstatus" "batmon" "README.md" "$file" "#openweathermap-fullfeatured.sh#" "../" "./")
 
@@ -84,21 +99,7 @@
 
  ("/home/kim/.scripts/spotify/" (25527 20637 359959 587000) "spotify_status.py" "py_spotify_listener.py" "launchlistener.sh" "../" "./")
 
- ("/home/kim/.dotfiles/" (25529 9707 896393 460000) "src/" "fonts/" "emacs/" "dots/" "config/" "bin/" "base-uefi.sh" "base-mbr.sh" ".xprofile" ".scripts/" ".mbsyncrc" ".baggrunde/" ".git/" "../" "./")
-
- ("/home/kim/.gnupg/" (25529 7935 43123 504000) "random_seed" "openpgp-revocs.d/" "pubring.kbx" "pubring.kbx~" "private-keys-v1.d/" "crls.d/" "trustdb.gpg" "../" "./")
-
- ("/home/kim/.dotfiles/emacs/exwm/" (25528 31710 836609 341000) "start-exwm.sh" "start-exwm.sh~" "desktop.el" "../" "./")
-
  ("/home/" (25527 12386 914169 819000) "kim/" "../" "./")
-
- ("/home/kim/.config/emacs/exwm/" (25528 31710 836609 341000) "start-exwm.sh" "start-exwm.sh~" "desktop.el" "../" "./")
-
- ("/home/kim/Dokumenter/ebooks/" (25527 15799 807803 395000) "Rupi Kaur/" "Rothenberg, Jess/" "Rick Riordan/" "Ransom Riggs/" "Rainbow Rowell/" "Neil Gaiman/" "Lang Leav/" "John Green/" "Jenny Han/" "Jennifer Niven/" "Haruki Murakami/" "Amy Zhang/" "Welcome to The Universe - Neil deGrasse Tyson.epub" "Waking Gods Book 2 of the Them - Sylvain Neuvel.epub" "Under the Dome_ A Novel - Stephen King.epub" "Things_We_Know_by_Heart_-_Jessi_Kirby.epub" "They Both Die at the End - Adam Silvera.epub" "The_Rest_of_Us_Just_Live_Here_-_Patrick_Ness.epub" "The Sun Is Also a Star - Nicola Yoon.epub" "The Last Time We Say Goodbye - Cynthia Hand.epub" "The Geography of You and Me - Jennifer E. Smith.epub" "Sleeping Giants - Sylvain Neuvel.epub" "README.md" "Patrick Ness - A Monster Calls (v5.0).epub" "Origin.epub" "Origin by Dan Brown.epub" "Norse Mythology - Neil Gaiman.epub" "My Heart and Other Black Holes - Jasmine Warga.epub" "Love Letters to the Dead - Ava Dellaira.epub" "Lily+Rambrisc+-+The+Poems+of+Sylvia+Plath+1960-61.epub" "Levithan, David - Every Day.epub" "Laura_Marx_Fitzgerald_-_The_Gallery.epub" "Jocelyn_Davies_-_The_Odds_of_Lightning.epub" "I-Wrote-This-For-You.epub" "I'll Give You the Sun - Jandy Nelson.epub" "I'll Be There_Chapter 1.pdf" "I Wrote This For You.epub" "Girl_Against_the_Universe_-_Paula_Stokes.epub" "Gayle Forman - Where She Went(1).epub" "Gayle Forman - If I Stay.epub" "Fantastic Beasts and Where to F - J. K. Rowling.epub" "Everything, Everything - Nicola Yoon.epub" "Every Last Word - Tamara Ireland Stone.epub" "Counting by 7s by Holly Goldberg Sloan.epub" "Book_01___The_Bad_Beginning__Revised_.epub" "Beginning of Everything, The - Robyn Schneider.epub" "Astrophysics for People in a Hurry - Neil deGrasse Tyson.epub" "Aristotle and Dante Discover the Secrets of the Universe - Benjamin Alire Sáenz.epub" "Antoine_de_Saint_-_The_Little_Prince.epub" "Anonymous-Diary-of-an-Oxygen-Thief.pdf" "All_in_Pieces_-_Suzanne_Young.epub" "About Time Adam Frank.epub" "A_Series_of_Unfortunate_Events_1__The_Bad_Beginning.epub" "2004 - After Dark.epub" ".git/" "../" "./")
-
- ("/home/kim/Dokumenter/" (25527 16243 984449 185000) "roman.org" "Stark.org" "mastering-emacs-v2.pdf" "7274622_MERCEDES_Eqa_Eqa 250+ F_AU_OD SUV.pdf" "7274620_POLESTAR_2_78kwh Long Range Single Motor_AU_HA Hatchback.pdf" "7274619_SKODA_Enyaq_204 Hk 77-82kwh F 80_AU_OD SUV.pdf" "7270247_AUDI_Q4_Bev 82kwh 40 E-Tron Attitude_AU_OD SUV.pdf" "7270246_HYUNDAI_Ioniq 5_77.4 Kwt - 229 Hk F Advanced_AU_OD SUV.pdf" "7270245_VOLKSWAGEN_Id.4_204 Hk Performance F Pro Auto_AU_OD SUV.pdf" "authinfo" "literature-epub/" "Ebooks_Collection/" "S45C-6e22051910200.pdf" "Faktura_20220143.pdf" "passwordtilemacs(1)" "passwordtilemacs" "Nordea 28042022.xlsx" "Nordea 23052022.xlsx" "NFCERT Stream.pdf" "NFCERT Stream.docx" "guix-installer-202205080248.iso" "ebooks/" "../" "./")
-
- ("/home/kim/.config/alacritty/" (25182 59243 271398 476000) "#alacritty.yml#" "alacritty.yml" "../" "./")
 
  ("/home/kim/.local/src/dmenu/" (25182 57238 541353 811000) "stest" "stest.o" "dmenu" "util.o" "drw.o" "dmenu.o" "util.h" "util.c" "stest.c" "stest.1" "drw.h" "drw.c" "dmenu_run" "dmenu_path" "dmenu.c" "dmenu.1" "config.mk" "config.h" "config.def.h" "arg.h" "README" "Makefile" "LICENSE" "../" "./")
 

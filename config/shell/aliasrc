@@ -1,1 +1,46 @@
-/home/kim/.dots/.aliasrc
+####################################################
+#ALIAS CONFIG
+####################################################
+alias zzz='sudo ZZZ'
+alias wall='sxiv -f -t /home/kim/.dotfiles/.baggrunde/*'
+alias dok='cd ~/Dokumenter'
+alias nm=mu4e
+alias r=ranger
+alias v=emacs
+alias cdv='cd ~/.config/nvim && nvim init.vim'
+#alias c='cd ~/.config/i3/ && nvim config'
+alias c='cd ~/.xmonad/ && nvim xmonad.hs'
+alias b='nvim ~/.xmobarrc'
+alias cx='xmonad --recompile'
+alias d='cd ~/.config/dwm/ && nvim config.h'
+alias cdd='cd ~/.config/dwm'
+alias b='cd ~/.config/scripts/ && nvim bar.sh'
+alias cds='cd ~/.local/src/slstatus'
+alias s='cd ~/.local/src/slstatus && nvim config.h'
+alias cdm='cd ~/.config/dmenu'
+alias m='cd ~/.config/dmenu && nvim config.h'
+alias cdt='cd ~/.config/st'
+alias t='cd ~/.config/st && nvim config.h'
+alias k='cd ~/.config/sxhkd/ && nvim sxhkdrc'
+alias cdc='cd ~/.config/bspwm'
+alias cdk='cd ~/.config/sxhkd'
+alias p='cd ~/.config/polybar/ && nvim config'
+alias cdp='cd ~/.config/polybar'
+alias x=exit
+alias ez='nvim ~/.config/zsh/.zshrc'
+alias sz='source ~/.config/zsh/.zshrc'
+alias critty='nvim ~/.config/alacritty/alacritty.yml'
+alias UU='sudo pacman -Syu --noconfirm && yay -Syu --noconfirm'
+alias build='sudo make clean install'
+alias M='amixer sset Master toggle'
+alias matrix='unimatrix -f -l ocCgGkS -s 96'
+alias clock='tty-clock -sct -C 4'
+alias pipes='pipes -p 5 -R -t 1 -r 0'
+alias v=nvim
+alias x=exit
+alias nm=mu4e
+alias l='exa -lahF --color=always --icons --sort=size --group-directories-first'
+alias ls='exa -lhF --color=always --icons --sort=size --group-directories-first'
+alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
+
+

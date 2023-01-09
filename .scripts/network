@@ -8,7 +8,7 @@ wifi="$(ip a | grep wlp4s0 | grep inet | wc -l)"
 if [ $wire = 1 ]; then 
     echo "%{F#282a2e} %{B#5e8d87}  $(ifconfig | grep inet | awk 'NR==1 {print $2}')"
 elif [ $wifi = 1 ]; then
-    echo "%{F#282a2e} %{B#5e8d87}   %{F#282a2e}%{B#8abeb7} $(ifconfig | grep inet | awk 'NR==3 {print $2}')"
+    echo "%{F#282a2e}%{B#5e8d87}   %{F#282a2e}%{B#8abeb7} $(ifconfig | grep inet | awk 'NR==3 {print $2}')"
 else 
     echo "%{F#282a2e} %{B#5e8d87} 睊 %{F#282a2e}%{B#8abeb7} 'Disconnected'"
 fi

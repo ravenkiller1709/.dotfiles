@@ -5,18 +5,18 @@
       "feh" nil  "feh --bg-scale ~/.baggrunde/0147.jpg"))
 
 ;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+;;(menu-bar-mode -1)
+;;(tool-bar-mode -1)
+;;(scroll-bar-mode -1)
 ;; Also shrink fringes to 1 pixel.
-(fringe-mode 1)
+;;(fringe-mode 1)
 
 ;; Turn on `display-time-mode' if you don't use an external bar.
-(setq display-time-default-load-average nil)
+(setq display-time-default-load-average -1)
 
-(display-time-mode t)
+(display-time-mode -1)
 
-(setq display-time-24hr-format 1)
+(setq display-time-24hr-format -1)
 
 ;; You are strongly encouraged to enable something like `ido-mode' to alter
 ;; the default behavior of 'C-x b', or you will take great pains to switch
@@ -49,7 +49,7 @@
 (exwm-config-ido)
 
 ;; Set the initial number of workspaces (they can also be created later).
-(setq exwm-workspace-number 5)
+;; (setq exwm-workspace-number 10)
 
 (defun efs/exwm-update-class ()
   (exwm-workspace-rename-buffer exwm-class-name))
@@ -115,11 +115,11 @@
 ;; Set the screen resolution (update this to be the correct resolution for your screen!)
   (require 'exwm-randr)
   (exwm-randr-enable)
-  (start-process-shell-command "xrandr" nil "xrandr --output DisplayPort-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-1 --mode 3840x2160 --pos 3840x0 --rotate normal --output HDMI-A-0 --off --output HDMI-A-1 --off --output DVI-D-0 --off")
+  (start-process-shell-command "xrandr" nil "eDP1 --output --primary --mode 1920x1080 --pos 0x0 --rotate normal")
 
   ;; This will need to be updated to the name of a display!  You can find
   ;; the names of your displays by looking at arandr or the output of xrandr
-  (setq exwm-randr-workspace-monitor-plist '(2 "DisplayPort-0" 3 "DisplayPort-1"))
+  ;;  (setq exwm-randr-workspace-monitor-plist '(2 "DisplayPort-0" 3 "DisplayPort-1"))
 
   ;; NOTE: Uncomment these lines after setting up autorandr!
   ;; React to display connectivity changes, do initial display update
@@ -153,7 +153,7 @@
         ;; Bind "s-r" to exit char-mode and fullscreen mode.
         ([?\s-r] . exwm-reset)
         ;; Bind "s-w" to switch workspace interactively.
-        ([?\s-w] . exwm-workspace-switch)
+        ([?\s-s] . exwm-workspace-switch)
 	
         ;; Bind "s-0" to "s-9" to switch to a workspace by its index.
         ,@(mapcar (lambda (i)
@@ -228,6 +228,48 @@
 ;; You can hide the minibuffer and echo area when they're not used, by
 ;; uncommenting the following line.
 ;(setq exwm-workspace-minibuffer-position 'bottom)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;; Workspace configuration
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq exwm-workspace-index-map
+
+(lambda (index)
+
+(let ((named-workspaces ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"]))
+
+(if (< index (length named-workspaces))
+
+(elt named-workspaces index)
+
+(number-to-string index)))))
+
+
+
+(defun exwm-workspace--update-ewmh-desktop-names ()
+
+(xcb:+request exwm--connection
+
+(make-instance 'xcb:ewmh:set-_NET_DESKTOP_NAMES
+
+:window exwm--root :data
+
+(mapconcat (lambda (i) (funcall exwm-workspace-index-map i))
+
+(number-sequence 0 (1- (exwm-workspace--count)))
+
+"\0"))))
+
+
+
+(add-hook 'exwm-workspace-list-change-hook
+
+#'exwm-workspace--update-ewmh-desktop-names)
+
+
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;; Multimedia configuration

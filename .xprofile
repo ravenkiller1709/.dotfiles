@@ -1,4 +1,4 @@
-#!/bin/sh
+y#!/bin/sh
 xset +fp /home/kim/.local/share/fonts &
 xset fp rehash &
 picom &
@@ -9,4 +9,5 @@ xfce4-power-manager &
 dbus-launch &
 xrdb -load ~/.Xresources &
 dropbox &
+/home/kim/.config/polybar/launch.sh &
 #feh --bg-scale ~/.baggrunde/0116.jpg &

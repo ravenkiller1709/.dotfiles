@@ -543,7 +543,7 @@
 			("Ingo Lohmar" . "i.lohmar@gmail.com"))
 		       (:keywords "abbrev" "convenience" "matching"))])
  (compat .
-	 [(29 1 1 0 -4 0 20230106 93553)
+	 [(29 1 1 0 0 20230108 165245)
 	  ((emacs
 	    (24 4)))
 	  "Emacs Lisp Compatibility Library" tar
@@ -552,19 +552,19 @@
 	   (:maintainer "Daniel Mendler <mail@daniel-mendler.de>, Compat Development" . "~pkal/compat-devel@lists.sr.ht")
 	   (:authors
 	    ("Philip Kaludercic <philipk@posteo.net>, Daniel Mendler" . "mail@daniel-mendler.de"))
-	   (:commit . "34463680d51316441c54920e90e7ac010c18b50e"))])
+	   (:commit . "d709cb6adc857667cd4392ec4db965ce96a3f68e"))])
  (consult .
-	  [(0 30 0 20230106 10746)
+	  [(0 31 0 20230108 175225)
 	   ((emacs
 	     (27 1))
 	    (compat
-	     (29 1 0 1)))
+	     (29 1 1 0)))
 	   "Consulting completing-read" tar
 	   ((:url . "https://github.com/minad/consult")
 	    (:maintainer "Daniel Mendler" . "mail@daniel-mendler.de")
 	    (:authors
 	     ("Daniel Mendler and Consult contributors"))
-	    (:commit . "3db44f473c093aaed7606663173a219cccfef22a"))])
+	    (:commit . "24cd25581ec269d26b664f278203a9c067023b4d"))])
  (consult-recoll .
 		 [(0 8 0 20221014 200255)
 		  ((emacs
@@ -997,7 +997,7 @@
 	       ("Markus Triska" . "triska@metalevel.at"))
 	      (:commit . "cfcdf9e42821d246b7fbc84877aa4ecacc184a1c"))])
  (eev .
-      [(20230102 0 20230104 221356)
+      [(20230102 0 20230107 130016)
        ((emacs
 	 (24 4)))
        "Support for e-scripts (eepitch blocks, elisp hyperlinks, etc)" tar
@@ -1006,7 +1006,7 @@
 	(:maintainer "Eduardo Ochs" . "eduardoochs@gmail.com")
 	(:authors
 	 ("Eduardo Ochs" . "eduardoochs@gmail.com"))
-	(:commit . "e760c468ea61b4ec50627f935f24de022deaf30b"))])
+	(:commit . "862fa5ea2826f7a5d815d88b22c472420b01dfa1"))])
  (ef-themes .
 	    [(0 10 0 0 20230105 40017)
 	     ((emacs
@@ -1120,7 +1120,7 @@
 		    ("Omar Antolín Camarena" . "omar@matem.unam.mx"))
 		   (:commit . "0908eea9c6708605fe3a9718c8274a6711b6acb0"))])
  (ement .
-	[(0 6 -1 0 20221223 123705)
+	[(0 6 -1 0 20230108 104707)
 	 ((emacs
 	   (27 1))
 	  (map
@@ -1141,9 +1141,9 @@
 	  (:maintainer "Adam Porter" . "adam@alphapapa.net")
 	  (:authors
 	   ("Adam Porter" . "adam@alphapapa.net"))
-	  (:commit . "8d55a6375dce7beda8a15e510cff670c588bc29b"))])
+	  (:commit . "f8e3fa5f3ad3e126ebbbbfb572e1279154b6d3e1"))])
  (emms .
-       [(12 0 20221208 193128)
+       [(12 0 20230108 140951)
 	((cl-lib
 	  (0 5))
 	 (nadvice
@@ -1156,7 +1156,7 @@
 	 (:maintainer "Yoni Rabkin" . "yrk@gnu.org")
 	 (:authors
 	  ("Jorgen Schäfer" . "forcer@forcix.cx"))
-	 (:commit . "6910be1656283d0d8325c97bb9f00e7b37930737"))])
+	 (:commit . "0e34fefe44a8fca45bf9364a19768809a2ed7614"))])
  (engrave-faces .
 		[(0 3 1 0 20221209 170001)
 		 ((emacs
@@ -1465,7 +1465,7 @@
 		  (:keywords "gnome" "c" "coding style")
 		  (:url . "https://elpa.gnu.org/packages/gnome-c-style.html"))])
  (gnorb .
-	[(1 6 10 0 20221221 75839)
+	[(1 6 11 0 20230108 110132)
 	 ((cl-lib
 	   (0 5)))
 	 "Glue code between Gnus, Org, and BBDB" tar
@@ -1474,7 +1474,7 @@
 	  (:authors
 	   ("Eric Abrahamsen" . "eric@ericabrahamsen.net"))
 	  (:url . "https://elpa.gnu.org/packages/gnorb.html")
-	  (:commit . "35d8a5090b06e9d451eeaf46567e6934a4d11b3d"))])
+	  (:commit . "409e4fc2c83f8406f362028dbcc3a1fc21182819"))])
  (gnu-elpa .
 	   [(1 1 0 20221212 224322)
 	    ((emacs
@@ -1681,7 +1681,7 @@
 	   ("Oleh Krehel" . "ohwoeowho@gmail.com"))
 	  (:commit . "54e9db2b023e03b6f6b46aeec48ea74fd51d4e11"))])
  (hyperbole .
-	    [(8 0 1 -1 0 20221218 160719)
+	    [(8 0 1 -1 0 20230108 131119)
 	     ((emacs
 	       (27 0)))
 	     "GNU Hyperbole: The Everyday Hypertextual Information Manager" tar
@@ -1690,7 +1690,7 @@
 	      (:maintainer "Bob Weiner <rsw@gnu.org>, Mats Lidell" . "matsl@gnu.org")
 	      (:authors
 	       ("Bob Weiner"))
-	      (:commit . "796b38eeccabb9b130820316167d3a622af0a184"))])
+	      (:commit . "36601ca973b7bfe8d0f8f20ae4e5749d51f4727a"))])
  (ilist .
 	[(0 1 0 20220115 130125)
 	 nil "Display a list in an ibuffer way." tar
@@ -1701,7 +1701,7 @@
 	  (:url . "https://elpa.gnu.org/packages/ilist.html")
 	  (:commit . "c8edbb4ba109186ee5371310a2ac0f9ccbca77cd"))])
  (inspector .
-	    [(0 10 0 20230105 90422)
+	    [(0 10 0 20230108 164245)
 	     ((emacs
 	       (27 1)))
 	     "Tool for inspection of Emacs Lisp objects" tar
@@ -1710,7 +1710,7 @@
 	      (:maintainer "Mariano Montone" . "marianomontone@gmail.com")
 	      (:authors
 	       ("Mariano Montone" . "marianomontone@gmail.com"))
-	      (:commit . "7cd3930b7b4c28ac7e87e9b8488f0b7ad278a9c1"))])
+	      (:commit . "4cf394120edb22dee928e7a5edd3b4ef8f85a572"))])
  (ioccur .
 	 [(2 6 0 20211231 163129)
 	  ((emacs
@@ -2414,7 +2414,7 @@
 	       ("Omar Antolín Camarena" . "omar@matem.unam.mx"))
 	      (:commit . "847694e78c12d903d5e3f6cb365a5d3b984db537"))])
  (org .
-      [(9 6 0 20230105 90801)
+      [(9 6 0 20230107 121518)
        ((emacs
 	 (25 1)))
        "Outline-based notes management and organizer" tar
@@ -2423,7 +2423,7 @@
 	(:maintainer "Bastien Guerry" . "bzg@gnu.org")
 	(:authors
 	 ("Carsten Dominik" . "carsten.dominik@gmail.com"))
-	(:commit . "a3815a169a6b50a786bfec7911b3485026119f4b"))])
+	(:commit . "2f7052619b33a1bcc3c6b4a5f2a7a6487125c003"))])
  (org-contacts .
 	       [(1 1 0 20221221 43108)
 		((emacs
@@ -2488,7 +2488,7 @@
 	      ("Taylor Grinn" . "grinntaylor@gmail.com"))
 	     (:commit . "27ea5d8b9be5bffb2a014324493383593b976ebf"))])
  (org-remark .
-	     [(1 0 5 0 20221228 3110)
+	     [(1 0 5 0 20230108 174717)
 	      ((emacs
 		(27 1))
 	       (org
@@ -2499,7 +2499,7 @@
 	       (:maintainer "Noboru Ota" . "me@nobiot.com")
 	       (:authors
 		("Noboru Ota" . "me@nobiot.com"))
-	       (:commit . "5fb747a419366a33e6659a992ada8a35aa8bd655"))])
+	       (:commit . "927bcd3ee66cf6bb66b7db86834b7a22c40ea167"))])
  (org-transclusion .
 		   [(1 3 1 0 20221109 20535)
 		    ((emacs
@@ -3603,7 +3603,7 @@
 	    ("Kaushal Modi" . "kaushal.modi@gmail.com"))
 	   (:commit . "670e0a08f625175fd80137cf69e799619bf8a381"))])
  (topspace .
-	   [(0 3 1 0 20220823 194903)
+	   [(0 3 1 0 20230106 94110)
 	    ((emacs
 	      (25 1)))
 	    "Recenter line 1 with scrollable upper margin/padding" tar
@@ -3612,7 +3612,7 @@
 	     (:maintainer "Trevor Edwin Pogue" . "trevor.pogue@gmail.com")
 	     (:authors
 	      ("Trevor Edwin Pogue" . "trevor.pogue@gmail.com"))
-	     (:commit . "4f090520174cab0fa752765b7c18885efb6cce11"))])
+	     (:commit . "88604ffb6d0eed3f0153e95a79beb885966d3165"))])
  (tramp .
 	[(2 6 0 0 20221230 101537)
 	 ((emacs
@@ -3691,7 +3691,7 @@
 	 (:authors
 	  ("Toby Cubitt" . "toby-predictive@dr-qubit.org")))])
  (triples .
-	  [(0 2 1 0 20230102 210159)
+	  [(0 2 2 0 20230107 151739)
 	   ((seq
 	     (2 0))
 	    (emacs
@@ -3702,7 +3702,7 @@
 	    (:maintainer "Andrew Hyatt" . "ahyatt@gmail.com")
 	    (:authors
 	     ("Andrew Hyatt" . "ahyatt@gmail.com"))
-	    (:commit . "bf65ed2b311a6a13632ae758b054dc52fa292b90"))])
+	    (:commit . "7d7904e6decebc7c9861d38a9443127bf66a1643"))])
  (undo-tree .
 	    [(0 8 2 0 20220312 180415)
 	     ((queue
