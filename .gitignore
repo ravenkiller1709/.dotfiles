@@ -1,2 +1,3 @@
-/elpa
-history
+/emacs/elpa
+/emacs/history
+/emacs/auto-save-list

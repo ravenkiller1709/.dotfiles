@@ -1,0 +1,10 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "~/RoamNoter/20230115235241-test.org")
+ (front-context-string . "Dette er min før")
+ (rear-context-string . ":\n#+title: Test\n")
+ (position . 82))
+)
