@@ -1,14 +1,35 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;; Clean up Emacs interface
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'org-tempo)
 
+(with-eval-after-load 'org
+(org-babel-do-load-languages
+    'org-babel-load-languages
+    '((emacs-lisp . t)
+    (python . t)))
 
-;; Make frame transparency overridable
+(push '("conf-unix" . conf-unix) org-src-lang-modes))
+
+(with-eval-after-load 'org
+  ;; This is needed as of Org 9.2
+  (require 'org-tempo)
+
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python")))
+
+;; Automatically tangle our Emacs.org config file when we save it
+(defun efs/org-babel-tangle-config ()
+  (when (string-equal (file-name-directory (buffer-file-name))
+                      (expand-file-name user-emacs-directory))
+    ;; Dynamic scoping to the rescue
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle))))
+
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+
 (defvar efs/frame-transparency '(90 . 90))
 (set-frame-parameter (selected-frame) 'alpha '(95 95))
 (add-to-list 'default-frame-alist '(alpha 95 95))
 
-;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (defun efs/display-startup-time ()
@@ -30,32 +51,25 @@
 
 (set-fringe-mode 10)
 
-;; Display line numbers relative to current place
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 
-;; Keybindings
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f6>") 'org-export-dispatch)
 (global-set-key (kbd "<f7>") 'eshell)
 (global-set-key (kbd "<f8>") 'magit)
 
-;; Misc
 (fset 'yes-or-no-p 'y-or-n-p)
 (setenv "HOME" "/home/kim/")
 
-;; Set the default font
 (set-face-attribute 'default nil
-                    :family "MesloLGLDZ Nerd Font"
-                    :height 140
-                    :weight 'normal
-                    :width 'normal)
+                  :family "MesloLGLDZ Nerd Font"
+                  :height 140
+                  :weight 'normal
+                  :width 'normal)
 
+'(initial-frame-alist '((fullscreen . maximized)))
 
-;;Toggle fullscreen
- '(initial-frame-alist '((fullscreen . maximized)))
-
-;; Initialize package sources
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -67,7 +81,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-  ;; Initialize use-package on non-Linux platforms
+;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
@@ -82,10 +96,6 @@
   :config
   (auto-package-update-maybe)
   (auto-package-update-at-time "09:00"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Let's get encrypted
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setenv "GPG_AGENT_INFO" nil)  ;; use emacs pinentry
     (setq auth-source-debug t)
@@ -105,33 +115,20 @@
 	(funcall (plist-get (car result) :secret))
       nil)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Which key
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package which-key
-  :ensure t
-  :config (which-key-mode))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Magit
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:ensure t
+:config (which-key-mode))
 
 (use-package magit
   :commands magit-status
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 
 ;; NOTE: Make sure to configure a GitHub token before using this package!
 ;; - https://magit.vc/manual/forge/Token-Creation.html#Token-Creation
 ;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
 (use-package forge
   :after magit)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; DOOM THEMES
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package doom-themes
   :ensure t
@@ -165,43 +162,28 @@
 	   (doom-modeline-mu4e nil)
 	   (mu4e-alert-enable-mode-line-display)))
 
-
-
 (display-battery-mode -1)
-
 ;;(display-time-mode nil)
 ;;(setq display-time-24hr-format nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Vertico
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; Enable vertico
 (use-package vertico
-  :ensure t
-  :init
-  (vertico-mode)
+:ensure t
+:init
+(vertico-mode)
 
-  ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
+;; Different scroll margin
+;; (setq vertico-scroll-margin 0)
 
-  ;; Show more candidates
-  (setq vertico-count 20)
+;; Show more candidates
+(setq vertico-count 20)
 
-  ;; Grow and shrink the Vertico minibuffer
-  (setq vertico-resize t)
+;; Grow and shrink the Vertico minibuffer
+(setq vertico-resize t)
 
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  (setq vertico-cycle t)
-  )
+;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+(setq vertico-cycle t)
+)
 
-;; Optionally use the `orderless' completion style. See
-;; `+orderless-dispatch' in the Consult wiki for an advanced Orderless style
-;; dispatcher. Additionally enable `partial-completion' for file path
-;; expansion. `partial-completion' is important for wildcard support.
-;; Multiple files can be opened at once with `find-file' if you enter a
-;; wildcard. You may also give the `initials' completion style a try.
 (use-package orderless
   :init
   ;; Configure a custom style dispatcher (see the Consult wiki)
@@ -256,18 +238,165 @@
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
 
+(defun efs/org-font-setup ()
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; ORG MODE
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Set faces for heading levels
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
 
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
 
 (defun efs/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
   (visual-line-mode 1))
 
+(use-package org
+  :pin org
+  :commands (org-capture org-agenda)
+  :hook (org-mode . efs/org-mode-setup)
+  :config
   (setq org-ellipsis " ▾")
+
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+
+  (setq org-agenda-files
+        '("~/Projekter/Kode/OrgFiles/Opgaver.org"
+          "~/Projekter/Kode/OrgFiles/Vaner.org"
+          "~/Projekter/Kode/OrgFiles/Fødselsdage.org"))
+
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 60)
+
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+      (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
+  (setq org-refile-targets
+    '(("Arkiv.org" :maxlevel . 1)
+      ("Opgaver.org" :maxlevel . 1)))
+
+  ;; Save Org buffers after refiling!
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+  (setq org-tag-alist
+    '((:startgroup)
+       ; Put mutually exclusive tags here
+       (:endgroup)
+       ("@handle" . ?E)
+       ("@hjem" . ?H)
+       ("@arbejde" . ?W)
+       ("agenda" . ?a)
+       ("planlæg" . ?p)
+       ("publicer" . ?P)
+       ("batch" . ?b)
+       ("note" . ?n)
+       ("ide" . ?i)))
+
+  ;; Configure custom agenda views
+  (setq org-agenda-custom-commands
+   '(("d" "Dashboard"
+     ((agenda "" ((org-deadline-warning-days 7)))
+      (todo "NEXT"
+        ((org-agenda-overriding-header "Next Opgaver")))
+      (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projekter")))))
+
+    ("n" "Next Opgaver"
+     ((todo "NEXT"
+        ((org-agenda-overriding-header "Next Opgaver")))))
+
+    ("W" "Work Opgaver" tags-todo "+work-email")
+
+    ;; Low-effort next actions
+    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+     ((org-agenda-overriding-header "Low Effort Opgaver")
+      (org-agenda-max-todos 20)
+      (org-agenda-files org-agenda-files)))
+
+    ("w" "Workflow Status"
+     ((todo "WAIT"
+            ((org-agenda-overriding-header "Waiting on External")
+             (org-agenda-files org-agenda-files)))
+      (todo "REVIEW"
+            ((org-agenda-overriding-header "In Review")
+             (org-agenda-files org-agenda-files)))
+      (todo "PLAN"
+            ((org-agenda-overriding-header "In Planning")
+             (org-agenda-todo-list-sublevels nil)
+             (org-agenda-files org-agenda-files)))
+      (todo "BACKLOG"
+            ((org-agenda-overriding-header "Project Backlog")
+             (org-agenda-todo-list-sublevels nil)
+             (org-agenda-files org-agenda-files)))
+      (todo "READY"
+            ((org-agenda-overriding-header "Ready for Work")
+             (org-agenda-files org-agenda-files)))
+      (todo "ACTIVE"
+            ((org-agenda-overriding-header "Active Projekter")
+             (org-agenda-files org-agenda-files)))
+      (todo "COMPLETED"
+            ((org-agenda-overriding-header "Completed Projekter")
+             (org-agenda-files org-agenda-files)))
+      (todo "CANC"
+            ((org-agenda-overriding-header "Cancelled Projekter")
+             (org-agenda-files org-agenda-files)))))))
+
+  (setq org-capture-templates
+    `(("t" "Opgaver / Projekter")
+      ("tt" "Task" entry (file+olp "~/Projekter/Kode/OrgFiles/Opgaver.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+      ("j" "Journal Entries")
+      ("jj" "Journal" entry
+           (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
+           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+           :clock-in :clock-resume
+           :empty-lines 1)
+      ("jm" "Meeting" entry
+           (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
+           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 1)
+
+      ("w" "Workflows")
+      ("we" "Checking Email" entry (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
+           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+
+      ("m" "Metrics Capture")
+      ("mw" "Weight" table-line (file+headline "~/Projekter/Kode/OrgFiles/Metrics.org" "Weight")
+       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+
+  (define-key global-map (kbd "C-c j")
+    (lambda () (interactive) (org-capture nil "jj")))
+
+  (efs/org-font-setup))
+
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
@@ -374,9 +503,21 @@
                                       ("\\subsection{%s}" .
 "\\subsection*{%s}")))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Eshell conf
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/RoamNoter")
+  (org-roam-completion-everywhere t)
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert)
+	 :map org-mode-map
+	 ("C-M-i"   . completion-at-point))
+  :config
+  (org-roam-setup))
 
 (defun efs/configure-eshell ()
   ;; Save command history when commands are entered
@@ -403,10 +544,6 @@
 
   (eshell-git-prompt-use-theme 'powerline))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; Dired MODE
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;;(cond ((eq system-type 'berkeley-unix)
 ;;          (setq insert-directory-program "/usr/local/bin/gls")))
 
@@ -430,10 +567,6 @@
 
 ;;(use-package dired-hide-dotfiles
 ;;  :hook (dired-mode . dired-hide-dotfiles-mode)))
-  
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;; mu4e email configuration
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package mu4e
   :ensure nil
@@ -492,17 +625,3 @@
         ("/kimkruse/Sent" . ?s)
         ("/Hotmail/Inbox"    . ?d)
         ("/hotmail/Sent"     . ?t))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(eshell-vterm multi-vterm doom-gruvbox-theme gruvbox-theme doom-dark+-theme dark+-theme exwm-modeline exwm-x dracula-theme darcula-theme vterm exwm dired-hide-dotfiles dired-open all-the-icons-dired dired-single eshell-git-prompt visual-fill-column org-bullets hydra orderless vertico doom-modeline doom-themes magit auto-package-update use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

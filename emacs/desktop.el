@@ -1,22 +1,12 @@
-(defun efs/set-wallpaper ()
-  (interactive)
-  ;; NOTE: You will need to update this to a valid background path!
-  (start-process-shell-command
-      "feh" nil  "feh --bg-scale ~/.baggrunde/0147.jpg"))
+(defun efs/run-in-background (command)
+  (let ((command-parts (split-string command "[ ]+")))
+    (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
 
-;; Disable menu-bar, tool-bar and scroll-bar to increase the usable space.
-;;(menu-bar-mode -1)
-;;(tool-bar-mode -1)
-;;(scroll-bar-mode -1)
-;; Also shrink fringes to 1 pixel.
-;;(fringe-mode 1)
-
-;; Turn on `display-time-mode' if you don't use an external bar.
-(setq display-time-default-load-average -1)
-
-(display-time-mode -1)
-
-(setq display-time-24hr-format -1)
+  (defun efs/set-wallpaper ()
+    (interactive)
+    ;; NOTE: You will need to update this to a valid background path!
+    (start-process-shell-command
+        "feh" nil  "feh --bg-scale ~/.baggrunde/0147.jpg"))
 
 ;; You are strongly encouraged to enable something like `ido-mode' to alter
 ;; the default behavior of 'C-x b', or you will take great pains to switch
@@ -35,47 +25,48 @@
   (efs/set-wallpaper)
   (message "Display config: %s"
            (string-trim (shell-command-to-string "autorandr --current"))))
+
 ;;;; Below are configurations for EXWM.
 
-;; Add paths (not required if EXWM is installed from GNU ELPA).
-;(add-to-list 'load-path "/path/to/xelb/")
-;(add-to-list 'load-path "/path/to/exwm/")
+  ;; Add paths (not required if EXWM is installed from GNU ELPA).
+  ;(add-to-list 'load-path "/path/to/xelb/")
+  ;(add-to-list 'load-path "/path/to/exwm/")
 
-;; Load EXWM.
-(require 'exwm)
+  ;; Load EXWM.
+  (require 'exwm)
 
-;; Fix problems with Ido (if you use it).
-(require 'exwm-config)
-(exwm-config-ido)
+  ;; Fix problems with Ido (if you use it).
+  (require 'exwm-config)
+  (exwm-config-ido)
 
-;; Set the initial number of workspaces (they can also be created later).
-;; (setq exwm-workspace-number 10)
+  ;; Set the initial number of workspaces (they can also be created later).
+  ;; (setq exwm-workspace-number 10)
 
-(defun efs/exwm-update-class ()
-  (exwm-workspace-rename-buffer exwm-class-name))
+  (defun efs/exwm-update-class ()
+    (exwm-workspace-rename-buffer exwm-class-name))
 
-(defun efs/exwm-update-title ()
-  (pcase exwm-class-name
-    ("Librewolf" (exwm-workspace-rename-buffer (format "Librewolf: %s" exwm-title)))))
+  (defun efs/exwm-update-title ()
+    (pcase exwm-class-name
+      ("Firefox" (exwm-workspace-rename-buffer (format "Firefox: %s" exwm-title)))))
 
-;; This function isn't currently used, only serves as an example how to
-;; position a window
-(defun efs/position-window ()
-  (let* ((pos (frame-position))
-         (pos-x (car pos))
-          (pos-y (cdr pos)))
+  ;; This function isn't currently used, only serves as an example how to
+  ;; position a window
+  (defun efs/position-window ()
+    (let* ((pos (frame-position))
+           (pos-x (car pos))
+            (pos-y (cdr pos)))
 
-    (exwm-floating-move (- pos-x) (- pos-y))))
+      (exwm-floating-move (- pos-x) (- pos-y))))
 
-(defun efs/configure-window-by-class ()
-  (interactive)
-  (pcase exwm-class-name
-    ("LibreWolf" (exwm-workspace-move-window 2))
-    ("Sol" (exwm-workspace-move-window 3))
-    ("mpv" (exwm-floating-toggle-floating)
-           (exwm-layout-toggle-mode-line))))
+  (defun efs/configure-window-by-class ()
+    (interactive)
+    (pcase exwm-class-name
+      ("Firefox" (exwm-workspace-move-window 2))
+      ("Sol" (exwm-workspace-move-window 3))
+      ("mpv" (exwm-floating-toggle-floating)
+             (exwm-layout-toggle-mode-line))))
 
-;; All buffers created in EXWM mode are named "*EXWM*". You may want to
+  ;; All buffers created in EXWM mode are named "*EXWM*". You may want to
 ;; change it in `exwm-update-class-hook' and `exwm-update-title-hook', which
 ;; are run when a new X window class name or title is available.  Here's
 ;; some advice on this topic:
@@ -96,8 +87,6 @@
                       (string-prefix-p "sun-awt-X11-" exwm-instance-name)
                       (string= "gimp" exwm-instance-name))
               (exwm-workspace-rename-buffer exwm-title))))
-
-
 
   ;; NOTE: Uncomment the following two options if you want window buffers
   ;;       to be available on all workspaces!
@@ -128,18 +117,17 @@
 
   ;; Set the wallpaper after changing the resolution
   (efs/set-wallpaper)
-
   ;; Load the system tray before exwm-init
-  (require 'exwm-systemtray)
-  (setq exwm-systemtray-height 32)
-  (exwm-systemtray-enable)
+(require 'exwm-systemtray)
+(setq exwm-systemtray-height 32)
+(exwm-systemtray-enable)
 
-  ;; Automatically send the mouse cursor to the selected workspace's display
-  (setq exwm-workspace-warp-cursor t)
+;; Automatically send the mouse cursor to the selected workspace's display
+(setq exwm-workspace-warp-cursor t)
 
-  ;; Window focus should follow the mouse pointer
-  (setq mouse-autoselect-window t
-        focus-follows-mouse t)
+;; Window focus should follow the mouse pointer
+(setq mouse-autoselect-window t
+      focus-follows-mouse t)
 
 ;; Global keybindings can be defined with `exwm-input-global-keys'.
 ;; Here are a few examples:
@@ -171,10 +159,10 @@
         ([?\s-d] . (lambda (command)
 		     (interactive (list (read-shell-command "$ ")))
 		     (start-process-shell-command command nil command)))
-	;; Bind "s-w" to launch librewolf
+	;; Bind "s-w" to launch firefox
 	([?\s-w] . (lambda ()
 		     (interactive)
-		     (start-process "" nil "/usr/bin/librewolf")))
+		     (start-process "" nil "/usr/bin/firefox")))
 	;; Bind "s-w" to launch librewolf
 
 	([?\s-p] . (lambda ()
@@ -229,53 +217,6 @@
 ;; uncommenting the following line.
 ;(setq exwm-workspace-minibuffer-position 'bottom)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;; Workspace configuration
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq exwm-workspace-index-map
-
-(lambda (index)
-
-(let ((named-workspaces ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"]))
-
-(if (< index (length named-workspaces))
-
-(elt named-workspaces index)
-
-(number-to-string index)))))
-
-
-
-(defun exwm-workspace--update-ewmh-desktop-names ()
-
-(xcb:+request exwm--connection
-
-(make-instance 'xcb:ewmh:set-_NET_DESKTOP_NAMES
-
-:window exwm--root :data
-
-(mapconcat (lambda (i) (funcall exwm-workspace-index-map i))
-
-(number-sequence 0 (1- (exwm-workspace--count)))
-
-"\0"))))
-
-
-
-(add-hook 'exwm-workspace-list-change-hook
-
-#'exwm-workspace--update-ewmh-desktop-names)
-
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;; Multimedia configuration
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 (defun brighter ()
   (interactive)
   (start-process-shell-command "xbacklight + 10" nil "xbacklight + 10"))
@@ -301,6 +242,28 @@
   (start-process-shell-command "amixer set Master toggle" nil "amixer set Master toggle"))
 (exwm-input-set-key (kbd "<XF86AudioMute>") 'mute)
 
-;; Do not forget to enable EXWM. It will start by itself when things are
-;; ready.  You can put it _anywhere_ in your configuration.
 (exwm-enable)
+
+(defvar efs/polybar-process nil
+  "Holds the process of the running Polybar instance, if any")
+
+(defun efs/kill-panel ()
+  (interactive)
+  (when efs/polybar-process
+    (ignore-errors
+      (kill-process efs/polybar-process)))
+  (setq efs/polybar-process nil))
+
+(defun efs/start-panel ()
+  (interactive)
+  (efs/kill-panel)
+  (setq efs/polybar-process (start-process-shell-command "polybar" nil "polybar panel")))
+
+(defun efs/send-polybar-hook (module-name hook-index)
+  (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" module-name hook-index)))
+
+(defun efs/send-polybar-exwm-workspace ()
+  (efs/send-polybar-hook "exwm-workspace" 1))
+
+;; Update panel indicator when workspace changes
+(add-hook 'exwm-workspace-switch-hook #'efs/send-polybar-exwm-workspace)

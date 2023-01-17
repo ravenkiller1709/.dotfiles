@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # A dmenu wrapper script for system functions.
-export WM="dwm"
+export WM="EXWM"
 case "$(readlink -f /sbin/init)" in
 	*systemd*) ctl='systemctl' ;;
 	*) ctl='loginctl' ;;
@@ -15,7 +15,7 @@ wmpid(){ # This function is needed if there are multiple instances of the window
 
 case "$(printf "🔒 lock\n🚪 leave $WM\n♻️ renew $WM\n🐻 hibernate\n🔃 reboot\n🖥️shutdown\n💤 sleep\n📺 display off" | dmenu -i -b -p 'Action: ')" in
 	'🔒 lock') slock ;;
-	"🚪 leave $WM") kill -9 "$(pidof dwm)" ;;
+	"🚪 leave $WM") kill -9 "$(pidof emacs)" ;;
 	"♻️ renew $WM") kill -HUP "$(wmpid)" ;;
 	'🐻 hibernate') slock $ctl hibernate -i ;;
 	'💤 sleep') slock $ctl suspend -i ;;

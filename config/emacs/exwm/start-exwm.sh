@@ -7,6 +7,7 @@ setxkbmap dk &
 
 # Run the screen compositor
 compton &
+pulseaudio -k && pulseaudio &
 
 # Enable screen locking on suspend
 xss-lock -- slock &

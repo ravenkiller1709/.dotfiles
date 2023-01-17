@@ -15,7 +15,7 @@ get_mpd()
 		if [[ "$playpause" = "[playing]" ]]; then
 			current_song="%{B#a54242} %{F#1d1f21} $PREFIX_PLAY %{B#cc6666}%{F#1d1f21} $current_song"
 		elif [[ "$playpause" = "[paused]" ]]; then
-			current_song="%{B#a54242} %{F#1d1f21} $PREFIX_PAUSE%{B#cc6666}%{F#1d1f21} $current_song"
+			current_song="%{B#a54242} %{F#1d1f21} $PREFIX_PAUSE %{B#cc6666}%{F#1d1f21} $current_song"
 		fi
 	fi
 
