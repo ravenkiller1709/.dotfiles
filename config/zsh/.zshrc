@@ -3,7 +3,7 @@
 #########################################################
 
 source ~/.config/zsh/.zprofile
-export EDITOR='nvim'
+export EDITOR='emacs'
 export TERMINAL='st-256color'
 export BROWSER='firefox'
 #export MANPAGER='emacs +Man!'

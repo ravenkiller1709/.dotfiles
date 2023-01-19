@@ -1,0 +1,196 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ (#("/sudo:root@Arch:/home/kim/" 6 10 (tramp-default t) 11 15 (tramp-default t)) . ".gnupg/")
+ (#("/sudo:root@Arch:/home/" 6 10 (tramp-default t) 11 15 (tramp-default t)) . "kim/")
+ (#("/sudo:root@Arch:/" 6 10 (tramp-default t) 11 15 (tramp-default t)) . "home/")
+ ("/sudo::/etc/" . "pam.d/")
+ ("/home/kim/Projekter/Kode/" . "OrgFiles/")
+ ("/home/kim/Projekter/" . "Kode/")
+ ("/home/kim/.dotfiles/config/emacs/" . "exwm/")
+ ("/home/kim/.dotfiles/emacs/" . "exwm/")
+ ("/sudo::/usr/lib/sddm/" . "sddm.conf.d/")
+ ("/sudo::/usr/lib/" . "sddm/")
+ ("/sudo::/" . "usr/")
+ ("/sudo:root@Arch:/usr/lib/sddm/" . "sddm.conf.d/")
+ ("/sudo:root@Arch:/usr/lib/" . "sddm/")
+ ("/sudo:Arch:/usr/share/" . "xsessions/")
+ ("/sudo:Arch:/usr/" . "share/")
+ ("/sudo:Arch:/" . "usr/")
+ ("/mnt/.dotfiles/" . "emacs/")
+ ("/home/kim/.dotfiles/" . "emacs/")
+ ("/home/kim/.dotfiles/config/" . "emacs/")
+ ("/home/kim/.scripts/" . "spotify/")
+ ("/home/kim/.local/src/" . "dmenu/")
+ ("/home/kim/.local/" . "bin/")
+ ("/home/kim/" . ".scripts/")
+ ("/" . "home/")
+ ("/doas::/etc/X11/" . "xenodm/")
+ ("/doas::/etc/" . "X11/")
+ ("/doas::/" . "etc/")
+ ("/home/" . "kim/")
+ ("/home/kim/.config/emacs/" . "exwm/")
+ ("/home/kim/.config/" . "emacs/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/kim/.scripts/"
+ "/home/kim/.dotfiles/bin/statusbar/"
+ "/home/kim/.local/bin/"
+ "/home/kim/Projekter/Kode/OrgFiles/"
+ "/home/kim/.dotfiles/emacs/exwm/"
+ #("/sudo:root@Arch:/home/kim/.gnupg/" 6 10 (tramp-default t) 11 15 (tramp-default t))
+ "/sudo::/etc/pam.d/"
+ "/"
+ "/home/kim/.dotfiles/emacs/"
+ "/home/kim/.dotfiles/config/emacs/exwm/"
+ "/home/kim/.dotfiles/config/polybar/"
+ "/home/kim/.config/emacs/"
+ "/home/kim/.config/polybar/"
+ "/home/kim/.config/emacs/exwm/"
+ "/home/kim/.config/dunst/"
+ "/home/kim/"
+ "/sudo::/usr/lib/sddm/sddm.conf.d/"
+ "/sudo:root@Arch:/usr/lib/sddm/sddm.conf.d/"
+ "/sudo:Arch:/usr/share/xsessions/"
+ "/mnt/.dotfiles/emacs/"
+ "/home/kim/Dokumenter/"
+ "/home/kim/.dotfiles/config/emacs/"
+ "/home/kim/.dots/.scripts/"
+ "/home/kim/.config/"
+ "/home/kim/.config/alacritty/"
+ "/home/kim/.local/src/dmenu/"
+ "/home/kim/.dotfileslinux/config/emacs/"
+ "/doas::/root/"
+ "/home/kim/.dotfileslinux/config/emacs/exwm/"
+ "/home/kim/.screenlayout/"
+ "/doas::/etc/X11/xenodm/"
+ "/home/kim/Dokumenter/ebooks/"
+ "/home/kim/.dotfileslinux/"
+ "/home/kim/.ssh/"
+ "/home/kim/.gnupg/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "sb-mailbox"
+ "mailbox"
+ "mailcheck"
+ "Fødselsdage.org"
+ "Opgaver.org"
+ "start-exwm.sh"
+ "gpg-agent.conf"
+ "system-local-login"
+ "sudo:"
+ "Tasks.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/kim/.dotfiles/bin/statusbar/" (25540 32486 904032 981000) "weather" "volume" "torrent" "tasks" "price" "popupgrade" "pacpackages" "output" "news" "nettraf" "music" "mpdup" "moonphase" "memory" "mailbox-old" "mailbox" "kbselect" "iplocate" "internet" "help-icon" "forecast~" "forecast" "doppler" "dmenuprog" "disk" "crypto" "cpubars" "cpu" "clock" "battery" "0" "../" "./")
+
+ ("/home/kim/.dotfiles/bin/" (25540 34536 870801 727000) "webcam" "weather-xmobar.py" "vu" "vifmimg" "unix" "tutorialvids" "transadd" "torwrap" "texclear" "td-toggle" "tag" "sysact" "stream" "statusbar/" "statusbar-old/" "shortcuts" "setbg" "scratchpad2.sh~" "scratchpad.sh" "samedir" "rssadd" "rotdir" "rofi-power-menu" "rofi-power" "remaps" "refbar" "queueandnotify" "qndl" "prompt" "podentr" "pauseallmpv" "opout" "nextcloud" "musicunzip" "maimpick" "mailcheck~" "mailcheck" "mail.sh" "linkhandler" "lf-select" "launch_polybar" "ifinstalled" "i3cmds/" "herbstscratchpad" "getkeys" "fotobackup" "flytogpakud" "f2py3.10" "f2py3" "f2py" "external" "ext" "emacs.sh" "dmenuunicode" "dmenuumount" "dmenurecord" "dmenupass" "dmenumount" "dmenuhandler" "displayselect" "dbrowse" "cron/" "compiler" "colorz" "booksplit" "bookmarkthis.sh" "bin" "back" "0" "../" "./")
+
+ ("/home/kim/.local/bin/" (25540 34536 870801 727000) "webcam" "weather-xmobar.py" "vu" "vifmimg" "unix" "tutorialvids" "transadd" "torwrap" "texclear" "td-toggle" "tag" "sysact" "stream" "statusbar/" "statusbar-old/" "shortcuts" "setbg" "scratchpad2.sh~" "scratchpad.sh" "samedir" "rssadd" "rotdir" "rofi-power-menu" "rofi-power" "remaps" "refbar" "queueandnotify" "qndl" "prompt" "podentr" "pauseallmpv" "opout" "nextcloud" "musicunzip" "maimpick" "mailcheck~" "mailcheck" "mail.sh" "linkhandler" "lf-select" "launch_polybar" "ifinstalled" "i3cmds/" "herbstscratchpad" "getkeys" "fotobackup" "flytogpakud" "f2py3.10" "f2py3" "f2py" "external" "ext" "emacs.sh" "dmenuunicode" "dmenuumount" "dmenurecord" "dmenupass" "dmenumount" "dmenuhandler" "displayselect" "dbrowse" "cron/" "compiler" "colorz" "booksplit" "bookmarkthis.sh" "bin" "back" "0" "../" "./")
+
+ ("/home/kim/.local/" (25540 32558 807369 895000) "bin/" "src/" "share/" "../" "./")
+
+ ("/home/kim/.gnupg/" (25542 17134 558014 998000) "gpg-agent.conf" "random_seed" "openpgp-revocs.d/" "trustdb.gpg" "pubring.kbx" "pubring.kbx~" "private-keys-v1.d/" "../" "./")
+
+ ("/home/kim/.config/emacs/exwm/" (25542 17311 151340 80000) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
+
+ ("/home/kim/.config/emacs/" (25542 29938 936624 341000) "eshell/" "arkiv/" "ido.last" "desktop.el" "Desktop.org" "init.el" "Emacs.org" "dmenu-items" "url/" ".org-id-locations" "bookmarks" "org-roam.db" "history" "elpa/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "image-dired/" "forge-database.sqlite" "exwm/" "battery.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/.dotfiles/emacs/" (25542 29938 936624 341000) "eshell/" "arkiv/" "ido.last" "desktop.el" "Desktop.org" "init.el" "Emacs.org" "dmenu-items" "url/" ".org-id-locations" "bookmarks" "org-roam.db" "history" "elpa/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "image-dired/" "forge-database.sqlite" "exwm/" "battery.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/.dotfiles/emacs/exwm/" (25542 17311 151340 80000) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
+
+ ("/home/kim/Projekter/Kode/OrgFiles/" (25542 30051 849952 399000) "Fødselsdage.org" "Fødselsdage.org~" "#Opgaver.org#" ".#Opgaver.org" "Opgaver.org" "Opgaver.org~" "Vaner.org" "Tasks.org" "../" "./")
+
+ ("/home/kim/" (25542 17202 971345 135000) ".pam-gnupg" ".Xauthority" ".gitconfig" ".ssh/" ".zcompdump" ".fehbg" ".mozilla/" ".ZipArchive/" "Mail/" ".authinfo.gpg" "voidlinux_sleep_settings" "terminus-font-4.49.1/" "Stark.org" "S45C-6e22051910200.pdf" "nvim/" "Nordea 28042022.xlsx" "Nordea 23052022.xlsx" "NFCERT Stream.pdf" "NFCERT Stream.docx" "Projekter/" "RoamNoter/" "Faktura_20220143.pdf" ".gnupg/" ".zshrc" ".mbsyncrc" ".scripts/" ".baggrunde/" ".dotfiles/" "authinfo" ".cache/" ".local/" ".bash_history" ".config/" "Videoklip/" "Billeder/" "Musik/" "Dokumenter/" "Offentligt/" "Skabeloner/" "Hentet/" "Skrivebord/" ".bashrc" ".bash_profile" ".bash_logout" "../" "./")
+
+ (#("/sudo:root@Arch:/home/kim/.gnupg/" 6 10 (tramp-default t) 11 15 (tramp-default t)) (ftp . 464982.66498187964) "./" "../" "private-keys-v1.d/" "pubring.kbx~" "pubring.kbx" "trustdb.gpg" "openpgp-revocs.d/" "random_seed")
+
+ (#("/sudo:root@Arch:/home/kim/" 6 10 (tramp-default t) 11 15 (tramp-default t)) (ftp . 464982.66403790214) "./" "../" ".bash_logout" ".bash_profile" ".bashrc" "Skrivebord/" "Hentet/" "Skabeloner/" "Offentligt/" "Dokumenter/" "Musik/" "Billeder/" "Videoklip/" ".config/" ".bash_history" ".local/" ".cache/" "authinfo" ".dotfiles/" ".baggrunde/" ".scripts/" ".mbsyncrc" ".zshrc" ".gnupg/" "Faktura_20220143.pdf" "RoamNoter/" "Projekter/" "NFCERT Stream.docx" "NFCERT Stream.pdf" "Nordea 23052022.xlsx" "Nordea 28042022.xlsx" "nvim/" "S45C-6e22051910200.pdf" "Stark.org" "terminus-font-4.49.1/" "voidlinux_sleep_settings" ".authinfo.gpg" "Mail/" ".ZipArchive/" ".mozilla/" ".fehbg" ".zcompdump" ".ssh/" ".gitconfig" ".Xauthority")
+
+ (#("/sudo:root@Arch:/home/" 6 10 (tramp-default t) 11 15 (tramp-default t)) (ftp . 464982.6636617482) "./" "../" "kim/")
+
+ (#("/sudo:root@Arch:/" 6 10 (tramp-default t) 11 15 (tramp-default t)) (ftp . 464982.66303328593) "./" "../" "boot/" "home/" "var/" "dev/" "run/" "etc/" "tmp/" "sys/" "proc/" "usr/" "bin/" "lib/" "lib64/" "mnt/" "opt/" "root/" "sbin/" "srv/" "UUID")
+
+ (#("/sudo:root@Arch:/etc/" 6 10 (tramp-default t) 11 15 (tramp-default t)) (ftp . 464982.6629237595) "./" "../" "pacman.d/" "protocols" "services" "arch-release" "host.conf" "issue" "ld.so.conf" "ld.so.conf.d/" "mtab" "nsswitch.conf" "profile" "profile.d/" "securetty" "shells" "skel/" "gai.conf" "nscd.conf" "rpc" "inputrc" "bash.bash_logout" "bash.bashrc" "xattr.conf" "e2scrub.conf" "mke2fs.conf" "ssl/" "openldap/" "keyutils/" "request-key.conf" "request-key.d/" "krb5.conf" "bindresvport.blacklist" "netconfig" "pam.d/" "audit/" "libaudit.conf" "environment" "security/" "depmod.d/" "modprobe.d/" "default/" "login.defs" "pkcs11/" "systemd/" "ca-certificates/" "tpm2-tss/" "pinentry/" "makepkg.conf" "libnl/" "ethertypes" "iptables/" "debuginfod/" "X11/" "binfmt.d/" "kernel/" "modules-load.d/" "sysctl.d/" "tmpfiles.d/" "udev/" "xdg/" "machine-id" ".pwd.lock" "iproute2/" "gprofng.rc" "sudo.conf" "sudo_logsrvd.conf" "sudoers.d/" "initcpio/" "mkinitcpio.d/" "fonts/" "dconf/" "avahi/" "conf.d/" "healthd.conf" "sensors.d/" "sensors3.conf" "gtk-3.0/" "os-release" "localtime" "adjtime" "locale.gen~" "locale.gen" "locale.conf" "vconsole.conf" "hostname" "hosts~" "hosts" "mkinitcpio.conf~" "mkinitcpio.conf" "pacman.conf~" "pacman.conf" "subuid-" "subuid" "subgid-" "subgid" "sudoers.tmp~" "sudoers" "grub.d/" "slsh.rc" "wpa_supplicant/" "NetworkManager/" "cups/" "libpaper.d/" "papersize" "logrotate.d/" "anacrontab" "cron.d/" "cron.daily/" "cron.deny" "cron.hourly/" "cron.monthly/" "cron.weekly/" "trusted-key.key" "ssh/" "bluetooth/" "printcap" "crypttab~" "crypttab" "fstab~" "fstab" "man_db.conf" "libinput/" "dunst/" "pulse/" "polybar/" "rhashrc" "fuse.conf" "jack/" "libva.conf" "vdpau_wrapper.cfg" "rc_keymaps/" "rc_maps.cfg" "cifs-utils/" "libao.conf" "pipewire/" "mpd.conf" "openpmix/" "openmpi/" "mailcap" "mime.types" "nginx/" "zsh/" "passwd.OLD" "ts.conf" "xinetd.d/" "tlp.conf" "tlp.d/" "sddm.conf.d/" "polkit-1/" "alsa/" "group-" "gshadow-" "passwd-" "shadow-" "group" "gshadow" "passwd" "shadow" "openvpn/" ".updated" "resolv.conf" "ld.so.cache")
+
+ (#("/sudo:root@Arch:/etc/pam.d/" 6 10 (tramp-default t) 11 15 (tramp-default t)) (ftp . 464982.66253594327) "./" "../" "other" "system-auth" "system-login" "system-remote-login" "system-services" "chage" "chgpasswd" "chpasswd" "groupadd" "groupdel" "groupmems" "groupmod" "newusers" "passwd" "shadow" "useradd" "userdel" "usermod" "chfn" "chsh" "login" "runuser" "runuser-l" "su" "su-l" "vlock" "systemd-user" "sudo" "cups" "crond" "sshd" "sddm" "sddm-autologin" "sddm-greeter" "rlogin" "rsh" "polkit-1" "system-local-login~" "system-local-login")
+
+ ("/home/kim/.ssh/" (25542 3299 523148 525000) "known_hosts" "known_hosts.old" "id_rsa.pub" "id_rsa" "../" "./")
+
+ ("/home/kim/.config/" (25542 2070 66539 299000) "vpn/" "pulse/" "systemd/" "zsh/" "shell/" "polybar/" "ncmpcpp/" "mpd/" "emacs/" "dunst/" "alacritty/" "dmenu/" "yay/" "user-dirs.locale" "user-dirs.dirs" "../" "./")
+
+ ("/home/kim/.scripts/" (25542 2118 989870 346000) "wifi.sh" "weathermon" "weatherbar.sh" "weather.sh" "weather.py" "wallpaper_script.sh" "wallpaper-wrap" "wallpaper-save" "wallpaper-live" "wallp" "wal" "vpnup" "vpned" "vpndown" "vpn-openvpn-status/" "vpn-openvpn-isrunning/" "vpn" "volume.sh" "vol.sh" "upgrades.sh" "updates-pacman-aurhelper.sh" "transrss" "transclr" "transadd" "tordone~" "tordone" "time.sh" "spotify1.sh" "spotify/" "spotify.sh" "spectrwm-bindings.sh" "snippy.sh" "shufman" "scroll_spotify_status.sh" "sb-volume" "sb-mailbox" "sb-mail.sh" "quieter" "printscreen.sh~" "printscreen.sh" "post" "pmenu" "player.py" "player-mpris-tail.py" "pacpackages" "packages1.sh" "packages.sh" "openweathermap-fullfeatured.sh" "notifytorrents" "notetaker" "network~" "network.sh" "network" "mpd" "mostRecentNote" "memory.sh" "manps" "mail2.sh" "mail1.sh" "mail.sh" "louder" "lok" "livestream.sh" "livebackground.sh" "ld-exit" "inbox-imap-shellnetrc.sh" "hush" "hdd.sh" "get_spotify_status.sh" "forecast.sh-old" "forecast.sh-luke" "forecast.sh" "fehbg" "editconf" "dwmbar" "dwm-iconbar" "crypto.py" "cpu.sh" "config" "clock.sh" "chwall.sh" "buildst" "builddwm" "builddmenu" "buildconf" "buildNote" "bookmarkthis~" "bookmarkthis.sh" "bmenu" "bg.sh" "battery.sh" "battery-combined-udev.sh" "battery-combined-tlp.sh" "batteri~" "batteri-slstatus" "batteri" "batmon" "README.md" "$file" "#openweathermap-fullfeatured.sh#" "../" "./")
+
+ ("/home/kim/.config/polybar/" (25541 65054 624796 243000) "launch.sh" "config.ini~" "config.ini" "../" "./")
+
+ ("/home/kim/.dotfiles/config/emacs/exwm/" (25542 308 634768 0) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
+
+ ("/sudo::/etc/pam.d/" (ftp . 464982.6225084006) "./" "../" "other" "system-auth" "system-local-login" "system-login" "system-remote-login" "system-services" "chage" "chgpasswd" "chpasswd" "groupadd" "groupdel" "groupmems" "groupmod" "newusers" "passwd" "shadow" "useradd" "userdel" "usermod" "chfn" "chsh" "login" "runuser" "runuser-l" "su" "su-l" "vlock" "systemd-user" "sudo" "cups" "crond" "sshd" "sddm" "sddm-autologin" "sddm-greeter" "rlogin" "rsh" "polkit-1")
+
+ ("/sudo::/etc/" (ftp . 464982.62006970315) "./" "../" "pacman.d/" "protocols" "services" "arch-release" "host.conf" "issue" "ld.so.conf" "ld.so.conf.d/" "mtab" "nsswitch.conf" "profile" "profile.d/" "securetty" "shells" "skel/" "gai.conf" "nscd.conf" "rpc" "inputrc" "bash.bash_logout" "bash.bashrc" "xattr.conf" "e2scrub.conf" "mke2fs.conf" "ssl/" "openldap/" "keyutils/" "request-key.conf" "request-key.d/" "krb5.conf" "bindresvport.blacklist" "netconfig" "pam.d/" "audit/" "libaudit.conf" "environment" "security/" "depmod.d/" "modprobe.d/" "default/" "login.defs" "pkcs11/" "systemd/" "ca-certificates/" "tpm2-tss/" "pinentry/" "makepkg.conf" "libnl/" "ethertypes" "iptables/" "debuginfod/" "X11/" "binfmt.d/" "kernel/" "modules-load.d/" "sysctl.d/" "tmpfiles.d/" "udev/" "xdg/" "machine-id" ".pwd.lock" "iproute2/" "gprofng.rc" "sudo.conf" "sudo_logsrvd.conf" "sudoers.d/" "initcpio/" "mkinitcpio.d/" "fonts/" "dconf/" "avahi/" "conf.d/" "healthd.conf" "sensors.d/" "sensors3.conf" "gtk-3.0/" "os-release" "localtime" "adjtime" "locale.gen~" "locale.gen" "locale.conf" "vconsole.conf" "hostname" "hosts~" "hosts" "mkinitcpio.conf~" "mkinitcpio.conf" "pacman.conf~" "pacman.conf" "subuid-" "subuid" "subgid-" "subgid" "sudoers.tmp~" "sudoers" "grub.d/" "slsh.rc" "wpa_supplicant/" "NetworkManager/" "cups/" "libpaper.d/" "papersize" "logrotate.d/" "anacrontab" "cron.d/" "cron.daily/" "cron.deny" "cron.hourly/" "cron.monthly/" "cron.weekly/" "trusted-key.key" "ssh/" "bluetooth/" "printcap" "crypttab~" "crypttab" "fstab~" "fstab" "man_db.conf" "libinput/" "dunst/" "pulse/" "polybar/" "rhashrc" "fuse.conf" "jack/" "libva.conf" "vdpau_wrapper.cfg" "rc_keymaps/" "rc_maps.cfg" "cifs-utils/" "libao.conf" "pipewire/" "mpd.conf" "openpmix/" "openmpi/" "mailcap" "mime.types" "nginx/" "zsh/" "passwd.OLD" "ts.conf" "xinetd.d/" "tlp.conf" "tlp.d/" "sddm.conf.d/" "polkit-1/" "alsa/" "group-" "gshadow-" "passwd-" "shadow-" "group" "gshadow" "passwd" "shadow" "openvpn/" ".updated" "resolv.conf" "ld.so.cache")
+
+ ("/sudo::/" (ftp . 464982.6199795156) "./" "../" "boot/" "home/" "var/" "dev/" "run/" "etc/" "tmp/" "sys/" "proc/" "usr/" "bin/" "lib/" "lib64/" "mnt/" "opt/" "root/" "sbin/" "srv/" "UUID")
+
+ ("/home/kim/Projekter/Kode/OrgFiles/./" (25540 33650 690757 431000) "../" "./")
+
+ ("/home/kim/Projekter/Kode/" (25540 33650 690757 431000) "OrgFiles/" "../" "./")
+
+ ("/home/kim/Projekter/" (25540 33953 654105 907000) "my-org-site/" "Kode/" "../" "./")
+
+ ("/home/kim/.dotfiles/" (25542 3332 983146 962000) ".gitignore" "src/" "fonts/" "emacs/" "dots/" "config/" "bin/" "base-uefi.sh" "base-mbr.sh" ".xprofile~" ".xprofile" ".scripts/" ".mbsyncrc" ".baggrunde/" ".git/" "../" "./")
+
+ ("/home/kim/.dotfiles/config/polybar/" (25541 65054 624796 243000) "launch.sh" "config.ini~" "config.ini" "../" "./")
+
+ ("/home/kim/.config/dunst/" (25541 62439 218223 95000) "reload" "images/" "dunstrc" "../" "./")
+
+ ("/home/kim/.dotfiles/.scripts/" (25541 33927 160471 391000) "wifi.sh" "weathermon" "weatherbar.sh" "weather.sh" "weather.py" "wallpaper_script.sh" "wallpaper-wrap" "wallpaper-save" "wallpaper-live" "wallp" "wal" "vpnup" "vpned" "vpndown" "vpn-openvpn-status/" "vpn-openvpn-isrunning/" "vpn" "volume.sh" "vol.sh" "upgrades.sh" "updates-pacman-aurhelper.sh" "transrss" "transclr" "transadd" "tordone~" "tordone" "time.sh" "spotify1.sh" "spotify/" "spotify.sh" "spectrwm-bindings.sh" "snippy.sh" "shufman" "scroll_spotify_status.sh" "sb-volume" "sb-mailbox" "sb-mail.sh" "quieter" "printscreen.sh~" "printscreen.sh" "post" "pmenu" "player.py" "player-mpris-tail.py" "pacpackages" "packages1.sh" "packages.sh" "openweathermap-fullfeatured.sh" "notifytorrents" "notetaker" "network~" "network.sh" "network" "mpd" "mostRecentNote" "memory.sh" "manps" "mail2.sh" "mail1.sh" "mail.sh" "louder" "lok" "livestream.sh" "livebackground.sh" "ld-exit" "inbox-imap-shellnetrc.sh" "hush" "hdd.sh" "get_spotify_status.sh" "forecast.sh-old" "forecast.sh-luke" "forecast.sh" "fehbg" "editconf" "dwmbar" "dwm-iconbar" "crypto.py" "cpu.sh" "config" "clock.sh" "chwall.sh" "buildst" "builddwm" "builddmenu" "buildconf" "buildNote" "bookmarkthis~" "bookmarkthis.sh" "bmenu" "bg.sh" "battery.sh" "battery-combined-udev.sh" "battery-combined-tlp.sh" "batteri~" "batteri-slstatus" "batteri" "batmon" "README.md" "$file" "#openweathermap-fullfeatured.sh#" "../" "./")
+
+ ("/home/kim/.dotfiles/config/" (25540 32487 190699 663000) "zsh/" "shell/" "ranger/" "polybar/" "polybar-old/" "nvim/" "newsboat/" "ncmpcpp/" "mpd/" "i3/" "fish/" "emacs/" "dunst/" "dmenu/" "calibre/" "alacritty/" "../" "./")
+
+ ("/home/kim/Dokumenter/ebooks/" (25540 32339 487358 944000) "Rupi Kaur/" "Rothenberg, Jess/" "Rick Riordan/" "Ransom Riggs/" "Rainbow Rowell/" "Neil Gaiman/" "Lang Leav/" "John Green/" "Jenny Han/" "Jennifer Niven/" "Haruki Murakami/" "Amy Zhang/" "Welcome to The Universe - Neil deGrasse Tyson.epub" "Waking Gods Book 2 of the Them - Sylvain Neuvel.epub" "Under the Dome_ A Novel - Stephen King.epub" "Things_We_Know_by_Heart_-_Jessi_Kirby.epub" "They Both Die at the End - Adam Silvera.epub" "The_Rest_of_Us_Just_Live_Here_-_Patrick_Ness.epub" "The Sun Is Also a Star - Nicola Yoon.epub" "The Last Time We Say Goodbye - Cynthia Hand.epub" "The Geography of You and Me - Jennifer E. Smith.epub" "Sleeping Giants - Sylvain Neuvel.epub" "README.md" "Patrick Ness - A Monster Calls (v5.0).epub" "Origin.epub" "Origin by Dan Brown.epub" "Norse Mythology - Neil Gaiman.epub" "My Heart and Other Black Holes - Jasmine Warga.epub" "Love Letters to the Dead - Ava Dellaira.epub" "Lily+Rambrisc+-+The+Poems+of+Sylvia+Plath+1960-61.epub" "Levithan, David - Every Day.epub" "Laura_Marx_Fitzgerald_-_The_Gallery.epub" "Jocelyn_Davies_-_The_Odds_of_Lightning.epub" "I-Wrote-This-For-You.epub" "I'll Give You the Sun - Jandy Nelson.epub" "I'll Be There_Chapter 1.pdf" "I Wrote This For You.epub" "Girl_Against_the_Universe_-_Paula_Stokes.epub" "Gayle Forman - Where She Went(1).epub" "Gayle Forman - If I Stay.epub" "Fantastic Beasts and Where to F - J. K. Rowling.epub" "Everything, Everything - Nicola Yoon.epub" "Every Last Word - Tamara Ireland Stone.epub" "Counting by 7s by Holly Goldberg Sloan.epub" "Book_01___The_Bad_Beginning__Revised_.epub" "Beginning of Everything, The - Robyn Schneider.epub" "Astrophysics for People in a Hurry - Neil deGrasse Tyson.epub" "Aristotle and Dante Discover the Secrets of the Universe - Benjamin Alire Sáenz.epub" "Antoine_de_Saint_-_The_Little_Prince.epub" "Anonymous-Diary-of-an-Oxygen-Thief.pdf" "All_in_Pieces_-_Suzanne_Young.epub" "About Time Adam Frank.epub" "A_Series_of_Unfortunate_Events_1__The_Bad_Beginning.epub" "2004 - After Dark.epub" ".git/" "../" "./")
+
+ ("/home/kim/.config/alacritty/" (25540 32486 904032 981000) "alacritty.yml" "../" "./")
+
+ ("/home/kim/.dotfiles/config/emacs/" (25540 32487 74032 990000) "transient/" "network-security.data" "init.el~" "init.el" "ido.last~" "ido.last" "history" "exwm/" "elpa/" "desktop.el~" "desktop.el" "auto-save-list/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/Dokumenter/" (25540 32768 537380 308000) "passwordtilemacs" "Danmon.tex~" "Danmon.html~" "Danmon.org~" "Danmon/" "Stillingsbeskrivelse_salgschef Danmon Group.pdf" "7421038_POLESTAR_2_Bev 78kwh Long Range Sm Fwd_AU_HA Hatchback.pdf" "7421033_POLESTAR_2_Bev 78kwh Long Range Sm Fwd_AU_HA Hatchback.pdf" "roman.org" "Stark.org" "mastering-emacs-v2.pdf" "7274622_MERCEDES_Eqa_Eqa 250+ F_AU_OD SUV.pdf" "7274620_POLESTAR_2_78kwh Long Range Single Motor_AU_HA Hatchback.pdf" "7274619_SKODA_Enyaq_204 Hk 77-82kwh F 80_AU_OD SUV.pdf" "7270247_AUDI_Q4_Bev 82kwh 40 E-Tron Attitude_AU_OD SUV.pdf" "7270246_HYUNDAI_Ioniq 5_77.4 Kwt - 229 Hk F Advanced_AU_OD SUV.pdf" "7270245_VOLKSWAGEN_Id.4_204 Hk Performance F Pro Auto_AU_OD SUV.pdf" "authinfo" "literature-epub/" "Ebooks_Collection/" "S45C-6e22051910200.pdf" "Faktura_20220143.pdf" "passwordtilemacs(1)" "passwordtilemacs~" "Nordea 28042022.xlsx" "Nordea 23052022.xlsx" "NFCERT Stream.pdf" "NFCERT Stream.docx" "guix-installer-202205080248.iso" "ebooks/" "../" "./")
+
+ ("/mnt/.dotfiles/emacs/" (25539 36156 0 0) "bookmarks" "org-roam.db" ".org-id-locations" "image-dired/" "ido.last" "ido.last~" "eshell/" "init.el" "forge-database.sqlite" "init.el~" "init.el-bak" "elpa/" "auto-save-list/" "tutorial/" "transient/" "tramp" "themes/" "network-security.data" "history" "hallo.theme.el~" "hallo.theme.el-bak" "exwm/" "desktop.el-bak" "desktop.el" "battery.el" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/mnt/.dotfiles/" (25539 36152 0 0) ".xprofile~" "src/" "fonts/" "emacs/" "dots/" "config/" "bin/" "base-uefi.sh" "base-mbr.sh" ".xprofile" ".scripts/" ".mbsyncrc" ".baggrunde/" ".git/" "../" "./")
+
+ ("/home/" (25540 31350 652770 648000) "kim/" "../" "./")
+
+ ("/home/kim/.dots/.scripts/" (25529 24272 613317 281000) "network" "network~" "batteri" "batteri~" "wifi.sh" "weathermon" "weatherbar.sh" "weather.sh" "weather.py" "wallpaper_script.sh" "wallpaper-wrap" "wallpaper-save" "wallpaper-live" "wallp" "vpnup" "vpned" "vpndown" "vpn-openvpn-status/" "vpn-openvpn-isrunning/" "vpn" "volume.sh" "vol.sh" "upgrades.sh" "updates-pacman-aurhelper.sh" "transrss" "transclr" "transadd" "tordone~" "tordone" "time.sh" "spotify1.sh" "spotify/" "spotify.sh" "spectrwm-bindings.sh" "snippy.sh" "shufman" "scroll_spotify_status.sh" "sb-volume" "sb-mailbox" "sb-mail.sh" "quieter" "post" "pmenu" "player.py" "player-mpris-tail.py" "pacpackages" "packages1.sh" "packages.sh" "openweathermap-fullfeatured.sh" "notifytorrents" "notetaker" "network.sh" "mpd" "mostRecentNote" "memory.sh" "manps" "mail2.sh" "mail1.sh" "mail.sh" "louder" "lok" "livestream.sh" "livebackground.sh" "ld-exit" "inbox-imap-shellnetrc.sh" "hush" "hdd.sh" "get_spotify_status.sh" "forecast.sh-old" "forecast.sh-luke" "forecast.sh" "fehbg" "editconf" "dwmbar" "dwm-iconbar" "crypto.py" "cpu.sh" "config" "clock.sh" "chwall.sh" "buildst" "builddwm" "builddmenu" "buildconf" "buildNote" "bookmarkthis~" "bookmarkthis.sh" "bmenu" "bg.sh" "battery.sh" "battery-combined-udev.sh" "battery-combined-tlp.sh" "batteri-slstatus" "batmon" "README.md" "$file" "#openweathermap-fullfeatured.sh#" "../" "./")
+
+ ("/home/kim/.dots/" (25527 20650 633292 300000) "zshrc" "zprofile" "src/" "slstatus/" "pacman.conf" "mpd.conf~" "mpd.conf" "fonts/" "emacs/" "emacs-old/" "dots/" "dmenu-old/" "config/" "config.org" "config.el" "bin/" "base-uefi.sh" "base-mbr.sh" "README.md" "PlanSommer.org" "0" ".xprofile" ".xinitrc~" ".xinitrc" ".scripts/" ".rational-emacs/" ".mbsyncrc" ".local/" ".gitignore" ".dwm/" ".baggrunde/" ".aliasrc" ".git/" "../" "./")
+
+ ("/home/kim/.scripts/spotify/" (25527 20637 359959 587000) "spotify_status.py" "py_spotify_listener.py" "launchlistener.sh" "../" "./")
+
+ ("/home/kim/.local/src/dmenu/" (25182 57238 541353 811000) "stest" "stest.o" "dmenu" "util.o" "drw.o" "dmenu.o" "util.h" "util.c" "stest.c" "stest.1" "drw.h" "drw.c" "dmenu_run" "dmenu_path" "dmenu.c" "dmenu.1" "config.mk" "config.h" "config.def.h" "arg.h" "README" "Makefile" "LICENSE" "../" "./")
+
+ ("/home/kim/.local/src/" (25182 57220 734686 755000) "dmenu/" "yay/" "../" "./")
+
+ ("/home/kim/.dotfiles/.baggrunde/" (25173 29816 400079 874000) "okfinger.jpg" "magic.jpg" "live/" "graf2.jpg" "graf.jpg" "face.jpg" "README.md" "0310.jpg" "0309.jpg" "0308.jpg" "0307.jpg" "0306.jpg" "0305.jpg" "0304.jpg" "0303.jpg" "0302.jpg" "0301.jpg" "0300.jpg" "0299.jpg" "0298.jpg" "0297.jpg" "0296.jpg" "0295.jpg" "0294.jpg" "0293.jpg" "0292.jpg" "0291.jpg" "0290.jpg" "0289.jpg" "0288.jpg" "0287.jpg" "0286.jpg" "0285.jpg" "0284.jpg" "0283.jpg" "0282.jpg" "0281.jpg" "0280.jpg" "0279.jpg" "0278.jpg" "0277.jpg" "0276.jpg" "0275.jpg" "0274.jpg" "0273.jpg" "0272.jpg" "0271.jpg" "0270.jpg" "0269.jpg" "0268.jpg" "0267.jpg" "0266.jpg" "0265.jpg" "0264.jpg" "0263.jpg" "0262.jpg" "0261.jpg" "0260.jpg" "0259.jpg" "0258.jpg" "0257.jpg" "0256.jpg" "0255.jpg" "0254.jpg" "0253.jpg" "0252.jpg" "0251.jpg" "0250.jpg" "0249.jpg" "0248.jpg" "0247.jpg" "0246.jpg" "0245.jpg" "0244.jpg" "0243.jpg" "0242.jpg" "0241.jpg" "0240.jpg" "0239.jpg" "0238.jpg" "0237.jpg" "0236.jpg" "0235.jpg" "0234.jpg" "0233.jpg" "0232.jpg" "0231.jpg" "0230.jpg" "0229.jpg" "0228.jpg" "0227.jpg" "0226.jpg" "0225.jpg" "0224.jpg" "0223.jpg" "0222.jpg" "0221.jpg" "0220.jpg" "0219.jpg" "0218.jpg" "0217.jpg" "0216.jpg" "0215.jpg" "0214.jpg" "0213.jpg" "0212.jpg" "0211.jpg" "0210.jpg" "0209.jpg" "0208.jpg" "0207.jpg" "0206.jpg" "0205.jpg" "0204.jpg" "0203.jpg" "0202.jpg" "0201.jpg" "0200.jpg" "0199.jpg" "0198.jpg" "0197.jpg" "0196.jpg" "0195.jpg" "0194.jpg" "0193.jpg" "0192.jpg" "0191.jpg" "0190.jpg" "0189.jpg" "0188.jpg" "0187.jpg" "0186.jpg" "0185.jpg" "0184.jpg" "0183.jpg" "0182.jpg" "0181.jpg" "0180.jpg" "0179.jpg" "0178.jpg" "0177.jpg" "0176.jpg" "0175.jpg" "0174.jpg" "0173.jpg" "0172.jpg" "0171.jpg" "0170.jpg" "0169.jpg" "0168.jpg" "0167.jpg" "0166.jpg" "0165.jpg" "0164.jpg" "0163.jpg" "0162.jpg" "0161.jpg" "0160.jpg" "0159.jpg" "0158.jpg" "0157.jpg" "0156.jpg" "0155.jpg" "0154.jpg" "0153.jpg" "0152.jpg" "0151.jpg" "0150.jpg" "0149.jpg" "0148.jpg" "0147.jpg" "0146.jpg" "0145.jpg" "0144.jpg" "0143.jpg" "0142.jpg" "0141.jpg" "0140.jpg" "0139.jpg" "0138.jpg" "0137.jpg" "0136.jpg" "0135.jpg" "0134.jpg" "0133.jpg" "0132.jpg" "0131.jpg" "0130.jpg" "0129.jpg" "0128.jpg" "0127.jpg" "0126.jpg" "0125.jpg" "0124.jpg" "0123.jpg" "0122.jpg" "0121.jpg" "0120.jpg" "0119.jpg" "0118.jpg" "0117.jpg" "0116.jpg" "0115.jpg" "0114.jpg" "0113.jpg" "0112.jpg" "0111.jpg" "0110.jpg" "0109.jpg" "0108.jpg" "0107.jpg" "0106.jpg" "0105.jpg" "0104.jpg" "0103.jpg" "0102.jpg" "0101.jpg" "0100.jpg" "0099.jpg" "0098.jpg" "0097.jpg" "0096.jpg" "0095.jpg" "0094.jpg" "0093.jpg" "0092.jpg" "0091.jpg" "0090.jpg" "0089.jpg" "0088.jpg" "0087.jpg" "0086.jpg" "0085.jpg" "0084.jpg" "0083.jpg" "0082.jpg" "0081.jpg" "0080.jpg" "0079.jpg" "0078.jpg" "0077.jpg" "0076.jpg" "0075.jpg" "0074.jpg" "0073.jpg" "0072.jpg" "0071.jpg" "0070.jpg" "0069.jpg" "0068.jpg" "0067.jpg" "0066.jpg" "0065.jpg" "0064.jpg" "0063.jpg" "0062.jpg" "0061.jpg" "0060.jpg" "0059.jpg" "0058.jpg" "0057.jpg" "0056.jpg" "0055.jpg" "0054.jpg" "0053.jpg" "0052.jpg" "0051.jpg" "0050.jpg" "0049.jpg" "0048.jpg" "0047.jpg" "0046.jpg" "0045.jpg" "0044.jpg" "0043.jpg" "0042.jpg" "0041.jpg" "0040.jpg" "0039.jpg" "0038.jpg" "0037.jpg" "0036.jpg" "0035.jpg" "0034.jpg" "0033.jpg" "0032.jpg" "0031.jpg" "0030.jpg" "0029.jpg" "0028.jpg" "0027.jpg" "0026.jpg" "0025.jpg" "0024.jpg" "0023.jpg" "0022.jpg" "0021.jpg" "0020.jpg" "0019.jpg" "0018.jpg" "0017.jpg" "0016.jpg" "0015.jpg" "0014.jpg" "0013.jpg" "0012.jpg" "0011.jpg" "0010.jpg" "0009.jpg" "0008.jpg" "0007.jpg" "0006.jpg" "0005.jpg" "0004.jpg" "0003.jpg" "0002.jpg" "0001.jpg" "../" "./")
+
+ ("/home/kim/.dotfileslinux/config/emacs/" (25159 63271 230279 810000) "desktop.el-bak" "auto-save-list/" "network-security.data" "ido.last~" "init.el" "tramp" "ido.last" "exwm/" "history" "transient/" "desktop.el" "elpa/" ".mbsyncrc~" ".mbsyncrc" ".last-package-update-day" ".authinfo" "../" "./")
+
+ ("/home/kim/.dotfileslinux/config/emacs/exwm/" (25159 61498 688908 938000) "start-exwm.sh~" "start-exwm.sh" "desktop.el" "../" "./")
+
+ ("/home/kim/.screenlayout/" (25157 40009 382069 264000) "current.sh" "../" "./")
+
+ ("/home/kim/.dotfileslinux/" (25157 28291 530107 593000) "src/" "freebsdlinks" "fonts/" "dots/" "config/" "colorscript" "bin/" "base-uefi.sh" "base-mbr.sh" "README.md" ".xprofile" ".xmonad/" ".xmobarrc" ".scripts/" ".gitignore" ".baggrunde/" ".Xresources" ".git/" "../" "./")
+
+ ("/home/kim/.dotfileslinux/config/" (25157 28265 280270 419000) "zsh/" "ranger/" "polybar/" "nvim/" "newsboat/" "mpd/" "i3/" "fish/" "emacs/" "dunst/" "calibre/" "alacritty/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

@@ -1,0 +1,31 @@
+ls
+exit
+sudo pacman -Ss spice-agent
+sudo pacman -Ss spicy-agent
+yay -Ss spicy-agent
+yay -Ss spice-vdagent
+pacman -Ss spice-vdagent
+sudo pacman -S spice-vdagent
+spice-vdagent
+spice-vdagent
+feh --bg-scale ~/.baggrunde/0041.jpg 
+sudo pacman -S slock scrot playerctl mpv brightnessctl
+notify-send "test"
+ls
+exit
+cd /
+ls
+cd usr
+cd share
+ls
+cd icons
+ls
+cd Adwaita/
+ls
+cd 16x16/
+ls
+cd actions/
+ls
+exit
+setxkbmap dk
+exit

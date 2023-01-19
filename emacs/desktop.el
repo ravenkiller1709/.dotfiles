@@ -1,248 +1,193 @@
 (defun efs/run-in-background (command)
-  (let ((command-parts (split-string command "[ ]+")))
-    (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
+         (let ((command-parts (split-string command "[ ]+")))
+           (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
 
-  (defun efs/set-wallpaper ()
-    (interactive)
-    ;; NOTE: You will need to update this to a valid background path!
-    (start-process-shell-command
-        "feh" nil  "feh --bg-scale ~/.baggrunde/0147.jpg"))
+       (defun efs/set-wallpaper ()
+         (interactive)
+         ;; NOTE: You will need to update this to a valid background path!
+         (start-process-shell-command
+             "feh" nil  "feh --bg-scale ~/.baggrunde/0035.jpg"))
 
-;; You are strongly encouraged to enable something like `ido-mode' to alter
-;; the default behavior of 'C-x b', or you will take great pains to switch
-;; to or back from a floating frame (remember 'C-x 5 o' if you refuse this
-;; proposal however).
-;; You may also want to call `exwm-config-ido' later (see below).
-(ido-mode 1)
+       (defun efs/exwm-init-hook ()
+         ;; Make workspace 1 be the one where we land at startup
+         (exwm-workspace-switch-create 1)
 
-;; Emacs server is not required to run EXWM but it has some interesting uses
-;; (see next section).
-(server-start)
+         ;; Open eshell by default
+         ;; (eshell)
 
-;; This function should be used only after configuring autorandr!
-(defun efs/update-displays ()
-  (efs/run-in-background "autorandr --change --force")
-  (efs/set-wallpaper)
-  (message "Display config: %s"
-           (string-trim (shell-command-to-string "autorandr --current"))))
+         ;; NOTE: The next two are disabled because we now use Polybar!
 
-;;;; Below are configurations for EXWM.
+         ;; Show battery status in the mode line
+         ;;(display-battery-mode 1)
 
-  ;; Add paths (not required if EXWM is installed from GNU ELPA).
-  ;(add-to-list 'load-path "/path/to/xelb/")
-  ;(add-to-list 'load-path "/path/to/exwm/")
+         ;; Show the time and date in modeline
+         ;;(setq display-time-day-and-date t)
+         ;;(display-time-mode 1)
+         ;; Also take a look at display-time-format and format-time-string
 
-  ;; Load EXWM.
-  (require 'exwm)
+         ;; Start the Polybar panel
+         (efs/start-panel)
 
-  ;; Fix problems with Ido (if you use it).
-  (require 'exwm-config)
-  (exwm-config-ido)
+         ;; Launch apps that will run in the background
+         (efs/run-in-background "dunst")
+         (efs/run-in-background "nm-applet")
+         (efs/run-in-background "pasystray")
+         (efs/run-in-background "blueman-applet"))
 
-  ;; Set the initial number of workspaces (they can also be created later).
-  ;; (setq exwm-workspace-number 10)
+       (defun efs/exwm-update-class ()
+         (exwm-workspace-rename-buffer exwm-class-name))
 
-  (defun efs/exwm-update-class ()
-    (exwm-workspace-rename-buffer exwm-class-name))
+       (defun efs/exwm-update-title ()
+         (pcase exwm-class-name
+           ("Firefox" (exwm-workspace-rename-buffer (format "Firefox: %s" exwm-title)))))
 
-  (defun efs/exwm-update-title ()
-    (pcase exwm-class-name
-      ("Firefox" (exwm-workspace-rename-buffer (format "Firefox: %s" exwm-title)))))
+       ;; This function isn't currently used, only serves as an example how to
+       ;; position a window
+       (defun efs/position-window ()
+         (let* ((pos (frame-position))
+                (pos-x (car pos))
+                 (pos-y (cdr pos)))
 
-  ;; This function isn't currently used, only serves as an example how to
-  ;; position a window
-  (defun efs/position-window ()
-    (let* ((pos (frame-position))
-           (pos-x (car pos))
-            (pos-y (cdr pos)))
+           (exwm-floating-move (- pos-x) (- pos-y))))
 
-      (exwm-floating-move (- pos-x) (- pos-y))))
+       (defun efs/configure-window-by-class ()
+         (interactive)
+         (pcase exwm-class-name
+           ("Firefox" (exwm-workspace-move-window 2))
+           ("Sol" (exwm-workspace-move-window 3))
+           ("mpv" (exwm-floating-toggle-floating)
+                  (exwm-layout-toggle-mode-line))))
 
-  (defun efs/configure-window-by-class ()
-    (interactive)
-    (pcase exwm-class-name
-      ("Firefox" (exwm-workspace-move-window 2))
-      ("Sol" (exwm-workspace-move-window 3))
-      ("mpv" (exwm-floating-toggle-floating)
-             (exwm-layout-toggle-mode-line))))
+       ;; This function should be used only after configuring autorandr!
+       (defun efs/update-displays ()
+         (efs/run-in-background "autorandr --change --force")
+         (efs/set-wallpaper)
+         (message "Display config: %s"
+                  (string-trim (shell-command-to-string "autorandr --current"))))
 
-  ;; All buffers created in EXWM mode are named "*EXWM*". You may want to
-;; change it in `exwm-update-class-hook' and `exwm-update-title-hook', which
-;; are run when a new X window class name or title is available.  Here's
-;; some advice on this topic:
-;; + Always use `exwm-workspace-rename-buffer` to avoid naming conflict.
-;; + For applications with multiple windows (e.g. GIMP), the class names of
-;    all windows are probably the same.  Using window titles for them makes
-;;   more sense.
-;; In the following example, we use class names for all windows except for
-;; Java applications and GIMP.
-(add-hook 'exwm-update-class-hook
-          (lambda ()
-            (unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                        (string= "gimp" exwm-instance-name))
-              (exwm-workspace-rename-buffer exwm-class-name))))
-(add-hook 'exwm-update-title-hook
-          (lambda ()
-            (when (or (not exwm-instance-name)
-                      (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                      (string= "gimp" exwm-instance-name))
-              (exwm-workspace-rename-buffer exwm-title))))
+       (use-package exwm
+         :config
+         ;; Set the default number of workspaces
+         (setq exwm-workspace-number 5)
 
-  ;; NOTE: Uncomment the following two options if you want window buffers
-  ;;       to be available on all workspaces!
+         ;; When window "class" updates, use it to set the buffer name
+         (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
 
-  ;; Automatically move EXWM buffer to current workspace when selected
-  (setq exwm-layout-show-all-buffers t)
+         ;; When window title updates, use it to set the buffer name
+         (add-hook 'exwm-update-title-hook #'efs/exwm-update-title)
 
-  ;; Display all EXWM buffers in every workspace buffer list
-  (setq exwm-workspace-show-all-buffers t)
+         ;; Configure windows as they're created
+         (add-hook 'exwm-manage-finish-hook #'efs/configure-window-by-class)
 
-  ;; NOTE: Uncomment this option if you want to detach the minibuffer!
-  ;; Detach the minibuffer (show it with exwm-workspace-toggle-minibuffer)
-  ;; (setq exwm-workspace-minibuffer-position 'bottom)
+         ;; When EXWM starts up, do some extra confifuration
+         (add-hook 'exwm-init-hook #'efs/exwm-init-hook)
 
-;; Set the screen resolution (update this to be the correct resolution for your screen!)
-  (require 'exwm-randr)
-  (exwm-randr-enable)
-  (start-process-shell-command "xrandr" nil "eDP1 --output --primary --mode 1920x1080 --pos 0x0 --rotate normal")
+         ;; Rebind CapsLock to Ctrl
+         (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
 
-  ;; This will need to be updated to the name of a display!  You can find
-  ;; the names of your displays by looking at arandr or the output of xrandr
-  ;;  (setq exwm-randr-workspace-monitor-plist '(2 "DisplayPort-0" 3 "DisplayPort-1"))
+         ;; NOTE: Uncomment the following two options if you want window buffers
+         ;;       to be available on all workspaces!
 
-  ;; NOTE: Uncomment these lines after setting up autorandr!
-  ;; React to display connectivity changes, do initial display update
-  ;; (add-hook 'exwm-randr-screen-change-hook #'efs/update-displays)
-  ;; (efs/update-displays)
+         ;; Automatically move EXWM buffer to current workspace when selected
+         (setq exwm-layout-show-all-buffers t)
 
-  ;; Set the wallpaper after changing the resolution
-  (efs/set-wallpaper)
-  ;; Load the system tray before exwm-init
-(require 'exwm-systemtray)
-(setq exwm-systemtray-height 32)
-(exwm-systemtray-enable)
+         ;; Display all EXWM buffers in every workspace buffer list
+         (setq exwm-workspace-show-all-buffers t)
 
-;; Automatically send the mouse cursor to the selected workspace's display
-(setq exwm-workspace-warp-cursor t)
+         ;; NOTE: Uncomment this option if you want to detach the minibuffer!
+         ;; Detach the minibuffer (show it with exwm-workspace-toggle-minibuffer)
+         ;;(setq exwm-workspace-minibuffer-position 'top)
 
-;; Window focus should follow the mouse pointer
-(setq mouse-autoselect-window t
-      focus-follows-mouse t)
+         ;; Set the screen resolution (update this to be the correct resolution for your screen!)
+         (require 'exwm-randr)
+         (exwm-randr-enable)
+         (start-process-shell-command "xrandr" nil "xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal")
 
-;; Global keybindings can be defined with `exwm-input-global-keys'.
-;; Here are a few examples:
+         ;; This will need to be updated to the name of a display!  You can find
+         ;; the names of your displays by looking at arandr or the output of xrandr
+         ;;(setq exwm-randr-workspace-monitor-plist '(2 "Virtual-2" 3 "Virtual-2"))
 
+         ;; NOTE: Uncomment these lines after setting up autorandr!
+         ;; React to display connectivity changes, do initial display update
+         ;; (add-hook 'exwm-randr-screen-change-hook #'efs/update-displays)
+         ;; (efs/update-displays)
+
+         ;; Set the wallpaper after changing the resolution
+         (efs/set-wallpaper)
+
+         ;; NOTE: This is disabled because we now use Polybar!
+         ;; Load the system tray before exwm-init
+         ;; (require 'exwm-systemtray)
+         ;; (setq exwm-systemtray-height 32)
+         ;; (exwm-systemtray-enable)
+
+         ;; Automatically send the mouse cursor to the selected workspace's display
+         (setq exwm-workspace-warp-cursor t)
+
+         ;; Window focus should follow the mouse pointer
+         (setq mouse-autoselect-window t
+               focus-follows-mouse t)
+
+         ;; These keys should always pass through to Emacs
+         (setq exwm-input-prefix-keys
+           '(?\C-x
+             ?\C-u
+             ?\C-h
+             ?\M-x
+             ?\M-`
+             ?\M-&
+             ?\M-:
+             ?\C-\M-j  ;; Buffer list
+             ?\C-\ ))  ;; Ctrl+Space
+
+         ;; Ctrl+Q will enable the next key to be sent directly
+         (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
+         ;; Set up global key bindings.  These always work, no matter the input state!
+         ;; Keep in mind that changing this list after EXWM initializes has no effect.
 (setq exwm-input-global-keys
       `(
-	  (,(kbd "s-<up>") . windmove-up)
-          (,(kbd "s-<down>") . windmove-down)
-          (,(kbd "s-<left>") . windmove-left)
-	  (,(kbd "s-<right>") . windmove-right)
-        ;; Bind "s-r" to exit char-mode and fullscreen mode.
+        ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
         ([?\s-r] . exwm-reset)
-        ;; Bind "s-w" to switch workspace interactively.
-        ([?\s-s] . exwm-workspace-switch)
-	
-        ;; Bind "s-0" to "s-9" to switch to a workspace by its index.
+
+        ;; Move between windows
+        ([s-left] . windmove-left)
+        ([s-right] . windmove-right)
+        ([s-up] . windmove-up)
+        ([s-down] . windmove-down)
+
+        ;; Launch applications via shell command
+        ([?\s-d] . (lambda (command)
+                     (interactive (list (read-shell-command "$ ")))
+                     (start-process-shell-command command nil command)))
+
+        ;; Switch workspace
+        ([?\s-w] . exwm-workspace-switch)
+        ([?\s-m] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
+
+        ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
         ,@(mapcar (lambda (i)
                     `(,(kbd (format "s-%d" i)) .
                       (lambda ()
                         (interactive)
                         (exwm-workspace-switch-create ,i))))
-                  (number-sequence 0 9))
-        
-        ;; Bind window movement keys to arrowkeys
-	
-       
-        ;; Bind "s-d" to launch applications ('M-&' also works if the output
-        ;; buffer does not bother you).
-        ([?\s-d] . (lambda (command)
-		     (interactive (list (read-shell-command "$ ")))
-		     (start-process-shell-command command nil command)))
-	;; Bind "s-w" to launch firefox
-	([?\s-w] . (lambda ()
-		     (interactive)
-		     (start-process "" nil "/usr/bin/firefox")))
-	;; Bind "s-w" to launch librewolf
+                  (number-sequence 0 9))))
 
-	([?\s-p] . (lambda ()
-		     (interactive)
-                     (start-process "" nil "/home/kim/.scripts/printscreen.sh"))) 
-	
-	([?\s-z] . (lambda ()
-		     (interactive)
-		     (start-process "" nil "/usr/bin/brave-nightly")))
+(exwm-input-set-key (kbd "s-SPC") 'counsel-linux-app)
 
-	([?\s-x] . (lambda ()
-		     (interactive)
-		     (start-process "" nil "/home/kim/.local/bin/sysact")))
+(exwm-enable))
 
-        ;; Bind "s-<f2>" to "slock", a simple X display locker.
-        ([s-f2] . (lambda ()
-		    (interactive)
-		    (start-process "" nil "/usr/bin/slock")))))
+(use-package desktop-environment
+  :after exwm
+  :config (desktop-environment-mode)
+  :custom
+  (desktop-environment-brightness-small-increment "2%+")
+  (desktop-environment-brightness-small-decrement "2%-")
+  (desktop-environment-brightness-normal-increment "5%+")
+  (desktop-environment-brightness-normal-decrement "5%-"))
 
-;; To add a key binding only available in line-mode, simply define it in
-;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.
-(define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
-
-;; The following example demonstrates how to use simulation keys to mimic
-;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
-;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
-;; and DEST is what EXWM actually sends to application.  Note that both SRC
-;; and DEST should be key sequences (vector or string).
-(setq exwm-input-simulation-keys
-      '(
-        ;; movement
-        ([?\C-b] . [left])
-        ([?\M-b] . [C-left])
-        ([?\C-f] . [right])
-        ([?\M-f] . [C-right])
-        ([?\C-p] . [up])
-        ([?\C-n] . [down])
-        ([?\C-a] . [home])
-        ([?\C-e] . [end])
-        ([?\M-v] . [prior])
-        ([?\C-v] . [next])
-        ([?\C-d] . [delete])
-        ([?\C-k] . [S-end delete])
-        ;; cut/paste.
-        ([?\C-w] . [?\C-x])
-        ([?\M-w] . [?\C-c])
-        ([?\C-y] . [?\C-v])
-        ;; search
-        ([?\C-s] . [?\C-f])))
-
-;; You can hide the minibuffer and echo area when they're not used, by
-;; uncommenting the following line.
-;(setq exwm-workspace-minibuffer-position 'bottom)
-
-(defun brighter ()
-  (interactive)
-  (start-process-shell-command "xbacklight + 10" nil "xbacklight + 10"))
-  (exwm-input-set-key (kbd "<XF86MonBrightnessUp>") 'brighter)
-
-  (defun dimmer ()
-  (interactive)
-  (start-process-shell-command "xbacklight - 10" nil "xbacklight - 10"))
-  (exwm-input-set-key (kbd "<XF86MonBrightnessDown>") 'dimmer)
-
-(defun louder ()
-  (interactive)
-  (start-process-shell-command "amixer set Master 5%+" nil "amixer set Master 5%+"))
-(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") 'louder)
-
-(defun lower ()
-  (interactive)
-  (start-process-shell-command "amixer set Master 5%-" nil "amixer set Master 5%-"))
-(exwm-input-set-key (kbd "<XF86AudioLowerVolume>") 'lower)
-
-(defun mute ()
-  (interactive)
-  (start-process-shell-command "amixer set Master toggle" nil "amixer set Master toggle"))
-(exwm-input-set-key (kbd "<XF86AudioMute>") 'mute)
-
-(exwm-enable)
+;; Make sure the server is started (better to do this in your main Emacs config!)
+(server-start)
 
 (defvar efs/polybar-process nil
   "Holds the process of the running Polybar instance, if any")
@@ -267,3 +212,15 @@
 
 ;; Update panel indicator when workspace changes
 (add-hook 'exwm-workspace-switch-hook #'efs/send-polybar-exwm-workspace)
+
+(defun efs/disable-desktop-notifications ()
+  (interactive)
+  (start-process-shell-command "notify-send" nil "notify-send \"DUNST_COMMAND_PAUSE\""))
+
+(defun efs/enable-desktop-notifications ()
+  (interactive)
+  (start-process-shell-command "notify-send" nil "notify-send \"DUNST_COMMAND_RESUME\""))
+
+(defun efs/toggle-desktop-notifications ()
+  (interactive)
+  (start-process-shell-command "notify-send" nil "notify-send \"DUNST_COMMAND_TOGGLE\""))

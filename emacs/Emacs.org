@@ -1,11 +1,6 @@
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 
-* Yasnippet for inserting code
-#+begin_src emacs-lisp :tangle ./init.el 
-(require 'org-tempo)
-#+end_src
-
 * Babel for deploying code
 To execute or export code in org-mode code blocks, you’ll need to set up org-babel-load-languages for each language you’d like to use. This page documents all of the languages that you can use with org-babel.
 #+begin_src emacs-lisp :tangle ./init.el  
@@ -24,7 +19,7 @@ Org Mode’s structure templates feature enables you to quickly insert code bloc
 You can add more src block templates below by copying one of the lines and changing the two strings at the end, the first to be the template name and the second to contain the name of the language as it is known by Org Babel.
 #+begin_src emacs-lisp :tangle ./init.el 
 (with-eval-after-load 'org
-  ;; This is needed as of Org 9.2
+  ;; This is needed as of Org 9.2 for code inserting
   (require 'org-tempo)
 
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
@@ -34,24 +29,21 @@ You can add more src block templates below by copying one of the lines and chang
 
 * Auto-tangle configuration files
 #+begin_src emacs-lisp :tangle ./init.el 
-;; Automatically tangle our Emacs.org config file when we save it
-(defun efs/org-babel-tangle-config ()
-  (when (string-equal (file-name-directory (buffer-file-name))
-                      (expand-file-name user-emacs-directory))
-    ;; Dynamic scoping to the rescue
-    (let ((org-confirm-babel-evaluate nil))
-      (org-babel-tangle))))
+  ;; Automatically tangle our Emacs.org config file when we save it
+  (defun efs/org-babel-tangle-config ()
+    (when (string-equal (file-name-directory (buffer-file-name))
+                        (expand-file-name user-emacs-directory))
+      ;; Dynamic scoping to the rescue
+      (let ((org-confirm-babel-evaluate nil))
+        (org-babel-tangle))))
 
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+  (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 #+end_src
-
-
-
 * Make frame transparency overrideable
 #+begin_src emacs-lisp :tangle ./init.el 
-  (defvar efs/frame-transparency '(90 . 90))
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
-(add-to-list 'default-frame-alist '(alpha 95 95))
+  (defvar efs/frame-transparency '(100 . 100))
+(set-frame-parameter (selected-frame) 'alpha '(100 100))
+(add-to-list 'default-frame-alist '(alpha 100 100))
 #+end_src
 
 
@@ -91,12 +83,12 @@ The default is 800 kilobytes.  Measured in bytes.
 * Keybindings
 #+begin_src emacs-lisp :tangle ./init.el 
   (global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "<f6>") 'org-export-dispatch)
-(global-set-key (kbd "<f7>") 'eshell)
-(global-set-key (kbd "<f8>") 'magit)
+  (global-set-key (kbd "<f6>") 'org-export-dispatch)
+  (global-set-key (kbd "<f7>") 'eshell)
+  (global-set-key (kbd "<f8>") 'magit)
 #+end_src
 
-* Misc
+* Font
 #+begin_src emacs-lisp :tangle ./init.el 
     (fset 'yes-or-no-p 'y-or-n-p)
   (setenv "HOME" "/home/kim/")
@@ -113,7 +105,7 @@ The default is 800 kilobytes.  Measured in bytes.
    '(initial-frame-alist '((fullscreen . maximized)))
 #+end_src
 
-* Initialize package sources
+* Package sources
 #+begin_src emacs-lisp :tangle ./init.el 
 (require 'package)
 
@@ -171,6 +163,95 @@ The default is 800 kilobytes.  Measured in bytes.
   :config (which-key-mode))
 #+end_src
 
+* Ivy and Counsel
+Ivy is an excellent completion framework for Emacs. It provides a minimal yet powerful selection menu that appears when you open files, switch buffers, and for many other tasks in Emacs. Counsel is a customized set of commands to replace `find-file` with `counsel-find-file`, etc which provide useful commands for each of the default completion commands.
+
+ivy-rich adds extra columns to a few of the Counsel commands to provide more information about each item.
+
+#+begin_src emacs-lisp :tangle ./init.el
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+
+(use-package ivy-rich
+  :after ivy
+  :init
+  (ivy-rich-mode 1))
+
+(use-package counsel
+  :bind (("C-M-j" . 'counsel-switch-buffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
+  :custom
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
+#+end_src
+
+* Improved Candidate Sorting with prescient.el
+prescient.el provides some helpful behavior for sorting Ivy completion candidates based on how recently or frequently you select them. This can be especially helpful when using M-x to run commands that you don’t have bound to a key but still need to access occasionally.
+
+This Prescient configuration is optimized for use in System Crafters videos and streams, check out the video on prescient.el for more details on how to configure it!
+
+#+begin_src emacs-lisp :tangle ./init.el
+(use-package ivy-prescient
+  :after counsel
+  :custom
+  (ivy-prescient-enable-filtering nil)
+  :config
+  ;; Uncomment the following line to have sorting remembered across sessions!
+  ;(prescient-persist-mode 1)
+  (ivy-prescient-mode 1))
+#+end_src
+
+* Helpful Help Commands
+Helpful adds a lot of very helpful (get it?) information to Emacs’ describe- command buffers. For example, if you use describe-function, you will not only get the documentation about the function, you will also see the source code of the function and where it gets used in other places in the Emacs configuration. It is very useful for figuring out how things work in Emacs.
+#+begin_src emacs-lisp :tangle ./init.el
+(use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+#+end_src
+
+* Projectile
+Projectile is a project management library for Emacs which makes it a lot easier to navigate around code projects for various languages. Many packages integrate with Projectile so it’s a good idea to have it installed even if you don’t use its commands directly.
+#+begin_src emacs-lisp :tangle ./init.el
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  ;; NOTE: Set this to the folder where you keep your Git repos!
+  (when (file-directory-p "~/Projects/Code")
+    (setq projectile-project-search-path '("~/Projects/Code")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :after projectile
+  :config (counsel-projectile-mode))
+#+end_src
 
 * Magit
 #+begin_src emacs-lisp :tangle ./init.el 
@@ -315,289 +396,310 @@ Enabling Vertico
 
 * Org Mode
 #+begin_src emacs-lisp :tangle ./init.el 
-  (defun efs/org-font-setup ()
-  ;; Replace list hyphen with dot
-  (font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+      (defun efs/org-font-setup ()
+      ;; Replace list hyphen with dot
+      (font-lock-add-keywords 'org-mode
+			      '(("^ *\\([-]\\) "
+				 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+      ;; Set faces for heading levels
+      (dolist (face '((org-level-1 . 1.2)
+		      (org-level-2 . 1.1)
+		      (org-level-3 . 1.05)
+		      (org-level-4 . 1.0)
+		      (org-level-5 . 1.1)
+		      (org-level-6 . 1.1)
+		      (org-level-7 . 1.1)
+		      (org-level-8 . 1.1)))
+	(set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
 
-  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
-  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
-  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+      ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+      (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+      (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+      (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+      (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+      (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+      (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+      (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+      (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+      (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+      (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+      (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+   #+end_src
 
-(defun efs/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (visual-line-mode 1))
+ #+begin_src emacs-lisp :tangle ./init.el
+  (defun efs/org-mode-setup ()
+      (org-indent-mode)
+      (variable-pitch-mode 1)
+      (visual-line-mode 1))
 
-(use-package org
-  :pin org
-  :commands (org-capture org-agenda)
-  :hook (org-mode . efs/org-mode-setup)
-  :config
-  (setq org-ellipsis " ▾")
+    (use-package org
+      :pin org
+      :commands (org-capture org-agenda)
+      :hook (org-mode . efs/org-mode-setup)
+      :config
+      (setq org-ellipsis " ▾")
 
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
+      (setq org-agenda-start-with-log-mode t)
+      (setq org-log-done 'time)
+      (setq org-log-into-drawer t)
 
-  (setq org-agenda-files
-        '("~/Projekter/Kode/OrgFiles/Opgaver.org"
-          "~/Projekter/Kode/OrgFiles/Vaner.org"
-          "~/Projekter/Kode/OrgFiles/Fødselsdage.org"))
+      (setq org-agenda-files
+	    '("~/Projekter/Kode/OrgFiles/Opgaver.org"
+	      "~/Projekter/Kode/OrgFiles/Vaner.org"
+	      "~/Projekter/Kode/OrgFiles/Fødselsdage.org"))
 
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 60)
+      (require 'org-habit)
+      (add-to-list 'org-modules 'org-habit)
+      (setq org-habit-graph-column 60)
 
-  (setq org-todo-keywords
-    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-      (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+      (setq org-todo-keywords
+	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
-  (setq org-refile-targets
-    '(("Arkiv.org" :maxlevel . 1)
-      ("Opgaver.org" :maxlevel . 1)))
+      (setq org-refile-targets
+	'(("Arkiv.org" :maxlevel . 1)
+	  ("Opgaver.org" :maxlevel . 1)))
 
-  ;; Save Org buffers after refiling!
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+      ;; Save Org buffers after refiling!
+      (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-  (setq org-tag-alist
-    '((:startgroup)
-       ; Put mutually exclusive tags here
-       (:endgroup)
-       ("@handle" . ?E)
-       ("@hjem" . ?H)
-       ("@arbejde" . ?W)
-       ("agenda" . ?a)
-       ("planlæg" . ?p)
-       ("publicer" . ?P)
-       ("batch" . ?b)
-       ("note" . ?n)
-       ("ide" . ?i)))
+      (setq org-tag-alist
+	'((:startgroup)
+	   ; Put mutually exclusive tags here
+	   (:endgroup)
+	   ("@handle" . ?E)
+	   ("@hjem" . ?H)
+	   ("@arbejde" . ?W)
+	   ("agenda" . ?a)
+	   ("planlæg" . ?p)
+	   ("publicer" . ?P)
+	   ("batch" . ?b)
+	   ("note" . ?n)
+	   ("ide" . ?i)))
 
-  ;; Configure custom agenda views
-  (setq org-agenda-custom-commands
-   '(("d" "Dashboard"
-     ((agenda "" ((org-deadline-warning-days 7)))
-      (todo "NEXT"
-        ((org-agenda-overriding-header "Next Opgaver")))
-      (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projekter")))))
+      ;; Configure custom agenda views
+      (setq org-agenda-custom-commands
+       '(("d" "Dashboard"
+	 ((agenda "" ((org-deadline-warning-days 7)))
+	  (todo "NEXT"
+	    ((org-agenda-overriding-header "Next Opgaver")))
+	  (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projekter")))))
 
-    ("n" "Next Opgaver"
-     ((todo "NEXT"
-        ((org-agenda-overriding-header "Next Opgaver")))))
+	("n" "Next Opgaver"
+	 ((todo "NEXT"
+	    ((org-agenda-overriding-header "Next Opgaver")))))
 
-    ("W" "Work Opgaver" tags-todo "+work-email")
+	("W" "Work Opgaver" tags-todo "+work-email")
 
-    ;; Low-effort next actions
-    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-     ((org-agenda-overriding-header "Low Effort Opgaver")
-      (org-agenda-max-todos 20)
-      (org-agenda-files org-agenda-files)))
+	;; Low-effort next actions
+	("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+	 ((org-agenda-overriding-header "Low Effort Opgaver")
+	  (org-agenda-max-todos 20)
+	  (org-agenda-files org-agenda-files)))
 
-    ("w" "Workflow Status"
-     ((todo "WAIT"
-            ((org-agenda-overriding-header "Waiting on External")
-             (org-agenda-files org-agenda-files)))
-      (todo "REVIEW"
-            ((org-agenda-overriding-header "In Review")
-             (org-agenda-files org-agenda-files)))
-      (todo "PLAN"
-            ((org-agenda-overriding-header "In Planning")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "BACKLOG"
-            ((org-agenda-overriding-header "Project Backlog")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "READY"
-            ((org-agenda-overriding-header "Ready for Work")
-             (org-agenda-files org-agenda-files)))
-      (todo "ACTIVE"
-            ((org-agenda-overriding-header "Active Projekter")
-             (org-agenda-files org-agenda-files)))
-      (todo "COMPLETED"
-            ((org-agenda-overriding-header "Completed Projekter")
-             (org-agenda-files org-agenda-files)))
-      (todo "CANC"
-            ((org-agenda-overriding-header "Cancelled Projekter")
-             (org-agenda-files org-agenda-files)))))))
+	("w" "Workflow Status"
+	 ((todo "WAIT"
+		((org-agenda-overriding-header "Waiting on External")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "REVIEW"
+		((org-agenda-overriding-header "In Review")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "PLAN"
+		((org-agenda-overriding-header "In Planning")
+		 (org-agenda-todo-list-sublevels nil)
+		 (org-agenda-files org-agenda-files)))
+	  (todo "BACKLOG"
+		((org-agenda-overriding-header "Project Backlog")
+		 (org-agenda-todo-list-sublevels nil)
+		 (org-agenda-files org-agenda-files)))
+	  (todo "READY"
+		((org-agenda-overriding-header "Ready for Work")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "ACTIVE"
+		((org-agenda-overriding-header "Active Projekter")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "COMPLETED"
+		((org-agenda-overriding-header "Completed Projekter")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "CANC"
+		((org-agenda-overriding-header "Cancelled Projekter")
+		 (org-agenda-files org-agenda-files)))))))
 
-  (setq org-capture-templates
-    `(("t" "Opgaver / Projekter")
-      ("tt" "Task" entry (file+olp "~/Projekter/Kode/OrgFiles/Opgaver.org" "Inbox")
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+      (setq org-capture-templates
+	`(("t" "Opgaver / Projekter")
+	  ("tt" "Task" entry (file+olp "~/Projekter/Kode/OrgFiles/Opgaver.org" "Inbox")
+	       "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-      ("j" "Journal Entries")
-      ("jj" "Journal" entry
-           (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
-           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-           :clock-in :clock-resume
-           :empty-lines 1)
-      ("jm" "Meeting" entry
-           (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
-           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-           :clock-in :clock-resume
-           :empty-lines 1)
+	  ("j" "Journal Entries")
+	  ("jj" "Journal" entry
+	       (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
+	       "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+	       ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+	       :clock-in :clock-resume
+	       :empty-lines 1)
+	  ("jm" "Meeting" entry
+	       (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
+	       "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+	       :clock-in :clock-resume
+	       :empty-lines 1)
 
-      ("w" "Workflows")
-      ("we" "Checking Email" entry (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
-           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+	  ("w" "Workflows")
+	  ("we" "Checking Email" entry (file+olp+datetree "~/Projekter/Kode/OrgFiles/Journal.org")
+	       "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
 
-      ("m" "Metrics Capture")
-      ("mw" "Weight" table-line (file+headline "~/Projekter/Kode/OrgFiles/Metrics.org" "Weight")
-       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+	  ("m" "Metrics Capture")
+	  ("mw" "Weight" table-line (file+headline "~/Projekter/Kode/OrgFiles/Metrics.org" "Weight")
+	   "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
 
-  (define-key global-map (kbd "C-c j")
-    (lambda () (interactive) (org-capture nil "jj")))
+      (define-key global-map (kbd "C-c j")
+	(lambda () (interactive) (org-capture nil "jj")))
 
-  (efs/org-font-setup))
-
-
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-
-(defun efs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 80
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
-
-(use-package visual-fill-column
-  :hook (org-mode . efs/org-mode-visual-fill))
-
- (setq org-latex-pdf-process
-          '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
-
-
-
-    (unless (boundp 'org-latex-classes)
-      (setq org-latex-classes nil))
-
-    (add-to-list 'org-latex-classes
-                 '("ethz"
-                   "\\documentclass[a4paper,11pt,titlepage]{memoir}
-    \\usepackage[utf8]{inputenc}
-    \\usepackage[T1]{fontenc}
-    \\usepackage{fixltx2e}
-    \\usepackage{graphicx}
-    \\usepackage{longtable}
-    \\usepackage{float}
-    \\usepackage{wrapfig}
-    \\usepackage{rotating}
-    \\usepackage[normalem]{ulem}
-    \\usepackage{amsmath}
-    \\usepackage{textcomp}
-    \\usepackage{marvosym}
-    \\usepackage{wasysym}
-    \\usepackage{amssymb}
-    \\usepackage{hyperref}
-    \\usepackage{mathpazo}
-    \\usepackage{color}
-    \\usepackage{enumerate}
-    \\definecolor{bg}{rgb}{0.95,0.95,0.95}
-    \\tolerance=1000
-          [NO-DEFAULT-PACKAGES]
-          [PACKAGES]
-          [EXTRA]
-    \\linespread{1.1}
-    \\hypersetup{pdfborder=0 0 0}"
-                   ("\\chapter{%s}" . "\\chapter*{%s}")
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-
-    (add-to-list 'org-latex-classes
-                 '("article"
-                   "\\documentclass[11pt,a4paper]{article}
-    \\usepackage[utf8]{inputenc}
-    \\usepackage[T1]{fontenc}
-    \\usepackage{fixltx2e}
-    \\usepackage{graphicx}
-    \\usepackage{longtable}
-    \\usepackage{float}
-    \\usepackage{wrapfig}
-    \\usepackage{rotating}
-    \\usepackage[normalem]{ulem}
-    \\usepackage{amsmath}
-    \\usepackage{textcomp}
-    \\usepackage{marvosym}
-    \\usepackage{wasysym}
-    \\usepackage{amssymb}
-    \\usepackage{hyperref}
-    \\usepackage{mathpazo}
-    \\usepackage{color}
-    \\usepackage{enumerate}
-    \\definecolor{bg}{rgb}{0.95,0.95,0.95}
-    \\tolerance=1000
-          [NO-DEFAULT-PACKAGES]
-          [PACKAGES]
-          [EXTRA]
-    \\linespread{1.1}
-    \\hypersetup{pdfborder=0 0 0}"
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")))
-
-
-    (add-to-list 'org-latex-classes '("ebook"
-                                      "\\documentclass[11pt, oneside]{memoir}
-    \\setstocksize{9in}{6in}
-    \\settrimmedsize{\\stockheight}{\\stockwidth}{*}
-    \\setlrmarginsandblock{2cm}{2cm}{*} % Left and right margin
-    \\setulmarginsandblock{2cm}{2cm}{*} % Upper and lower margin
-    \\checkandfixthelayout
-    % Much more laTeX code omitted
-    "
-                                      ("\\chapter{%s}" . "\\chapter*{%s}")
-                                      ("\\section{%s}" . "\\section*{%s}")
-                                      ("\\subsection{%s}" .
-"\\subsection*{%s}")))
-
-
-(use-package org-roam
-  :ensure t
-  :init
-  (setq org-roam-v2-ack t)
-  :custom
-  (org-roam-directory "~/RoamNoter")
-  (org-roam-completion-everywhere t)
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n i" . org-roam-node-insert)
-	 :map org-mode-map
-	 ("C-M-i"   . completion-at-point))
-  :config
-  (org-roam-setup))
+      (efs/org-font-setup))
 #+end_src
 
-* Eshell Configuration
+** Nicer Heading Bullets
+#+begin_src emacs-lisp :tangle ./init.el
+  (use-package org-bullets
+    :hook (org-mode . org-bullets-mode)
+    :custom
+    (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+  (defun efs/org-mode-visual-fill ()
+    (setq visual-fill-column-width 80
+          visual-fill-column-center-text t)
+    (visual-fill-column-mode 1))
+
+  (use-package visual-fill-column
+    :hook (org-mode . efs/org-mode-visual-fill))
+#+end_src
+
+** Latex formatting
+#+begin_src emacs-lisp :tangle ./init.el
+   (setq org-latex-pdf-process
+            '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+   (unless (boundp 'org-latex-classes)
+	(setq org-latex-classes nil))
+
+      (add-to-list 'org-latex-classes
+		   '("ethz"
+		     "\\documentclass[a4paper,11pt,titlepage]{memoir}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[T1]{fontenc}
+      \\usepackage{fixltx2e}
+      \\usepackage{graphicx}
+      \\usepackage{longtable}
+      \\usepackage{float}
+      \\usepackage{wrapfig}
+      \\usepackage{rotating}
+      \\usepackage[normalem]{ulem}
+      \\usepackage{amsmath}
+      \\usepackage{textcomp}
+      \\usepackage{marvosym}
+      \\usepackage{wasysym}
+      \\usepackage{amssymb}
+      \\usepackage{hyperref}
+      \\usepackage{mathpazo}
+      \\usepackage{color}
+      \\usepackage{enumerate}
+      \\definecolor{bg}{rgb}{0.95,0.95,0.95}
+      \\tolerance=1000
+	    [NO-DEFAULT-PACKAGES]
+	    [PACKAGES]
+	    [EXTRA]
+      \\linespread{1.1}
+      \\hypersetup{pdfborder=0 0 0}"
+		     ("\\chapter{%s}" . "\\chapter*{%s}")
+		     ("\\section{%s}" . "\\section*{%s}")
+		     ("\\subsection{%s}" . "\\subsection*{%s}")
+		     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+
+      (add-to-list 'org-latex-classes
+		   '("article"
+		     "\\documentclass[11pt,a4paper]{article}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[T1]{fontenc}
+      \\usepackage{fixltx2e}
+      \\usepackage{graphicx}
+      \\usepackage{longtable}
+      \\usepackage{float}
+      \\usepackage{wrapfig}
+      \\usepackage{rotating}
+      \\usepackage[normalem]{ulem}
+      \\usepackage{amsmath}
+      \\usepackage{textcomp}
+      \\usepackage{marvosym}
+      \\usepackage{wasysym}
+      \\usepackage{amssymb}
+      \\usepackage{hyperref}
+      \\usepackage{mathpazo}
+      \\usepackage{color}
+      \\usepackage{enumerate}
+      \\definecolor{bg}{rgb}{0.95,0.95,0.95}
+      \\tolerance=1000
+	    [NO-DEFAULT-PACKAGES]
+	    [PACKAGES]
+	    [EXTRA]
+      \\linespread{1.1}
+      \\hypersetup{pdfborder=0 0 0}"
+		     ("\\section{%s}" . "\\section*{%s}")
+		     ("\\subsection{%s}" . "\\subsection*{%s}")
+		     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		     ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
+
+      (add-to-list 'org-latex-classes '("ebook"
+					"\\documentclass[11pt, oneside]{memoir}
+      \\setstocksize{9in}{6in}
+      \\settrimmedsize{\\stockheight}{\\stockwidth}{*}
+      \\setlrmarginsandblock{2cm}{2cm}{*} % Left and right margin
+      \\setulmarginsandblock{2cm}{2cm}{*} % Upper and lower margin
+      \\checkandfixthelayout
+      % Much more laTeX code omitted
+      "
+					("\\chapter{%s}" . "\\chapter*{%s}")
+					("\\section{%s}" . "\\section*{%s}")
+					("\\subsection{%s}" .
+  "\\subsection*{%s}")))
+#+end_src
+
+** Org-roam
+For note taking and combining notes in an intelligent way
+#+begin_src emacs-lisp :tangle ./init.el
+  (use-package org-roam
+    :ensure t
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (org-roam-directory "~/RoamNoter")
+    (org-roam-completion-everywhere t)
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert)
+           :map org-mode-map
+           ("C-M-i"   . completion-at-point))
+    :config
+    (org-roam-setup))
+#+end_src
+
+* Terminals
+** term-mode
+term-mode is a built-in terminal emulator in Emacs. Because it is written in Emacs Lisp, you can start using it immediately with very little configuration. If you are on Linux or macOS, term-mode is a great choice to get started because it supports fairly complex terminal applications (htop, vim, etc) and works pretty reliably. However, because it is written in Emacs Lisp, it can be slower than other options like vterm. The speed will only be an issue if you regularly run console apps with a lot of output.
+
+One important thing to understand is line-mode versus char-mode. line-mode enables you to use normal Emacs keybindings while moving around in the terminal buffer while char-mode sends most of your keypresses to the underlying terminal. While using term-mode, you will want to be in char-mode for any terminal applications that have their own keybindings. If you’re just in your usual shell, line-mode is sufficient and feels more integrated with Emacs.
+
+Run a terminal with M-x term!
+
+Useful key bindings:
+
+    C-c C-p / C-c C-n - go back and forward in the buffer’s prompts (also [[ and ]] with evil-mode)
+    C-c C-k - Enter char-mode
+    C-c C-j - Return to line-mode
+
+** E-shell    
 #+begin_src emacs-lisp :tangle ./init.el 
   (defun efs/configure-eshell ()
   ;; Save command history when commands are entered
@@ -625,8 +727,90 @@ Enabling Vertico
   (eshell-git-prompt-use-theme 'powerline))
 #+end_src
 
+** Better term-mode colors
+The eterm-256color package enhances the output of term-mode to enable handling of a wider range of color codes so that many popular terminal applications look as you would expect them to. Keep in mind that this package requires ncurses to be installed on your machine so that it has access to the tic program. Most Linux distributions come with this program installed already so you may not have to do anything extra to use it.
+#+begin_src emacs-lisp :tangle ./init.el
+(use-package eterm-256color
+  :hook (term-mode . eterm-256color-mode))
+#+end_src
 
-* Dired Mode
+** Vterm
+vterm is an improved terminal emulator package which uses a compiled native module to interact with the underlying terminal applications. This enables it to be much faster than term-mode and to also provide a more complete terminal emulation experience.
+
+Make sure that you have the necessary dependencies installed before trying to use vterm because there is a module that will need to be compiled before you can use it successfully.
+#+begin_src emacs-lisp :tangle ./init.el
+(use-package vterm
+  :commands vterm
+  :config
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")  ;; Set this to match your custom shell prompt
+  ;;(setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
+  (setq vterm-max-scrollback 10000))
+#+end_src
+
+** Shell-mode
+shell-mode is a middle ground between term-mode and Eshell. It is not a terminal emulator so more complex terminal programs will not run inside of it. It does have much better integration with Emacs because all command input in this mode is handled by Emacs and then sent to the underlying shell once you press Enter. This means that you can use evil-mode’s editing motions on the command line, unlike in the terminal emulator modes above.
+
+Useful key bindings:
+
+    C-c C-p / C-c C-n - go back and forward in the buffer’s prompts (also [[ and ]] with evil-mode)
+    M-p / M-n - go back and forward in the input history
+    C-c C-u - delete the current input string backwards up to the cursor
+    counsel-shell-history - A searchable history of commands typed into the shell
+
+One advantage of shell-mode on Windows is that it’s the only way to run cmd.exe, PowerShell, Git Bash, etc from within Emacs. Here’s an example of how you would set up shell-mode to run PowerShell on Windows:
+
+#+begin_src emacs-lisp :tangle ./init.el
+(when (eq system-type 'windows-nt)
+  (setq explicit-shell-file-name "powershell.exe")
+  (setq explicit-powershell.exe-args '()))
+#+end_src
+
+* File Management
+** Dired
+*** Key Bindings
+Marking files
+
+    m - Marks a file
+    u - Unmarks a file
+    U - Unmarks all files in buffer
+    * t / t - Inverts marked files in buffer
+    % m - Mark files in buffer using regular expression
+    * - Lots of other auto-marking functions
+    k / K - “Kill” marked items (refresh buffer with g / g r to get them back)
+    Many operations can be done on a single file if there are no active marks!
+
+Copying and Renaming files
+
+    C - Copy marked files (or if no files are marked, the current file)
+    Copying single and multiple files
+    U - Unmark all files in buffer
+    R - Rename marked files, renaming multiple is a move!
+    % R - Rename based on regular expression: ^test , old-\&
+
+Power command: C-x C-q (dired-toggle-read-only) - Makes all file names in the buffer editable directly to rename them! Press Z Z to confirm renaming or Z Q to abort.
+Deleting files
+
+    D - Delete marked file
+    d - Mark file for deletion
+    x - Execute deletion for marks
+    delete-by-moving-to-trash - Move to trash instead of deleting permanently
+
+Creating and extracting archives
+
+    Z - Compress or uncompress a file or folder to (.tar.gz)
+    c - Compress selection to a specific file
+    dired-compress-files-alist - Bind compression commands to file extension
+
+Other common operations
+
+    T - Touch (change timestamp)
+    M - Change file mode
+    O - Change file owner
+    G - Change file group
+    S - Create a symbolic link to this file
+    L - Load an Emacs Lisp file into Emacs
+
+** Configuration
 #+begin_src emacs-lisp :tangle ./init.el 
   ;;(cond ((eq system-type 'berkeley-unix)
 ;;          (setq insert-directory-program "/usr/local/bin/gls")))
@@ -653,6 +837,15 @@ Enabling Vertico
 ;;  :hook (dired-mode . dired-hide-dotfiles-mode)))
 #+end_src
 
+* Applications
+** Some App
+This is an example of configuring another non-Emacs application using org-mode. Not only do we write out the configuration at .config/some-app/config, we also compute the value that gets stored in this configuration from the Emacs Lisp block above it.
+
+(+ 55 100)
+
+NOTE: Set the :tangle parameter below to .config/some-app/config for this to work!
+
+value=<<the-value()>>
 * Mu4e mail configuration
 #+begin_src emacs-lisp :tangle ./init.el 
   (use-package mu4e
@@ -712,4 +905,12 @@ Enabling Vertico
         ("/kimkruse/Sent" . ?s)
         ("/Hotmail/Inbox"    . ?d)
         ("/hotmail/Sent"     . ?t))))
+#+end_src
+
+* Runtime Performance
+Dial the GC threshold back down so that garbage collection happens more frequently but in less time.
+
+#+begin_src emacs-lisp :tangle ./init.el
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
 #+end_src
